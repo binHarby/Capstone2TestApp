@@ -1,1 +1,3 @@
 /build
+!/build/dokka
+!/build/dokka/*
