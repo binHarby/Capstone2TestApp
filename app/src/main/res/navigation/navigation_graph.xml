@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/landingPage">
+    <action android:id="@+id/action_global_more"
+        app:destination="@+id/more2"/>
+    <action android:id="@+id/action_global_diseases"
+        app:destination="@+id/addDiseases"/>
+    <action android:id="@+id/action_global_settingsFrag"
+        app:destination="@id/settingsFrag"/>
+    <action android:id="@+id/action_global_homepage"
+        app:destination="@id/homepage"/>
+    <action android:id="@+id/action_global_addfood"
+        app:destination="@id/addFood"/>
+    <action android:id="@+id/action_global_addmed"
+        app:destination="@id/addMed"/>
+    <action android:id="@+id/action_global_foodJournal"
+        app:destination="@id/foodJournal"/>
+    <action android:id="@+id/action_global_medJournal"
+        app:destination="@id/medJournal"/>
+    <fragment
+        android:id="@+id/landingPage"
+        android:name="com.example.capstone2test.LandingPage"
+        android:label="Landing Page"
+        tools:layout="@layout/fragment_landing_page" >
+        <action
+            android:id="@+id/landing_to_Signin"
+            app:destination="@id/signin" />
+        <action
+            android:id="@+id/landing_to_Signup"
+            app:destination="@id/signup" />
+    </fragment>
+    <fragment
+        android:id="@+id/signin"
+        android:name="com.example.capstone2test.Signin"
+        android:label="Signin"
+        tools:layout="@layout/fragment_signin" >
+        <argument
+            android:name="number"
+            app:argType="integer"
+            android:defaultValue="22" />
+        <action
+            android:id="@+id/signin_to_signup"
+            app:destination="@id/signup" />
+        <action
+            android:id="@+id/signin_to_recover"
+            app:destination="@id/recover" />
+        <action
+            android:id="@+id/signin_to_homepage"
+            app:destination="@id/homepage" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup"
+        android:name="com.example.capstone2test.Signup"
+        android:label="Signup"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/continue_signup2"
+            app:destination="@id/signup2cont" />
+    </fragment>
+    <fragment
+        android:id="@+id/recover"
+        android:name="com.example.capstone2test.Recover"
+        android:label="fragment_recover"
+        tools:layout="@layout/fragment_recover" >
+        <action
+            android:id="@+id/recover_to_landingPage"
+            app:destination="@id/landingPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup2cont"
+        android:name="com.example.capstone2test.Signup2cont"
+        android:label="fragment_signup2cont"
+        tools:layout="@layout/fragment_signup2cont" >
+        <action
+            android:id="@+id/continue_signup3"
+            app:destination="@id/signup3cont" />
+        <argument
+            android:name="first_name"
+            app:argType="string" />
+        <argument android:name="last_name"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument android:name="birthday"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup3cont"
+        android:name="com.example.capstone2test.Signup3cont"
+        android:label="fragment_signup3cont"
+        tools:layout="@layout/fragment_signup3cont" >
+        <action
+            android:id="@+id/signup_to_homepage"
+            app:destination="@id/homepage" />
+        <argument
+            android:name="first_name"
+            app:argType="string" />
+        <argument
+            android:name="last_name"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="birthday"
+            app:argType="string" />
+        <argument
+            android:name="height"
+            app:argType="float" />
+        <argument
+            android:name="weight"
+            app:argType="integer" />
+        <argument
+            android:name="bloodtype"
+            app:argType="string" />
+        <argument android:name="activity_lvl"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/homepage"
+        android:name="com.example.capstone2test.Homepage"
+        android:label="fragment_homepage"
+        tools:layout="@layout/fragment_homepage" >
+        <action
+            android:id="@+id/homepage_to_settings"
+            app:destination="@id/settings" />
+        <action
+            android:id="@+id/homepage_to_addFood"
+            app:destination="@id/addFood" />
+        <action
+            android:id="@+id/homepage_to_addMed"
+            app:destination="@id/addMed" />
+        <action
+            android:id="@+id/action_homepage_to_settingsFrag"
+            app:destination="@id/settingsFrag" />
+        <action
+            android:id="@+id/action_homepage_to_foodJournal"
+            app:destination="@id/foodJournal" />
+        <action
+            android:id="@+id/action_homepage_to_medJournal"
+            app:destination="@id/medJournal" />
+        <action
+            android:id="@+id/action_homepage_to_addDiseases"
+            app:destination="@id/addDiseases" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFrag"
+        android:name="com.example.capstone2test.SettingsFrag"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFrag_to_homepage"
+            app:destination="@id/homepage" />
+        <action
+            android:id="@+id/action_settingsFrag_to_addFood"
+            app:destination="@id/addFood" />
+        <action
+            android:id="@+id/action_settingsFrag_to_addImage"
+            app:destination="@id/addImage" />
+        <action
+            android:id="@+id/action_settingsFrag_to_addBarcode"
+            app:destination="@id/addBarcode" />
+        <action
+            android:id="@+id/action_settingsFrag_to_addMed"
+            app:destination="@id/addMed" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFood"
+        android:name="com.example.capstone2test.AddFood"
+        android:label="fragment_add_food"
+        tools:layout="@layout/fragment_add_food" >
+        <action
+            android:id="@+id/action_addFood_to_addBarcode"
+            app:destination="@id/addBarcode" />
+        <action
+            android:id="@+id/action_addFood_to_addImage"
+            app:destination="@id/addImage" />
+        <action
+            android:id="@+id/action_addFood_to_settingsFrag"
+            app:destination="@id/settingsFrag" />
+        <action
+            android:id="@+id/action_addFood_to_addText"
+            app:destination="@id/addText" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMed"
+        android:name="com.example.capstone2test.AddMed"
+        android:label="fragment_add_med"
+        tools:layout="@layout/fragment_add_med" />
+    <fragment
+        android:id="@+id/addBarcode"
+        android:name="com.example.capstone2test.AddBarcode"
+        android:label="fragment_add_barcode"
+        tools:layout="@layout/fragment_add_barcode" >
+        <action
+            android:id="@+id/action_addBarcode_to_addFood"
+            app:destination="@id/addFood" />
+        <action
+            android:id="@+id/action_addBarcode_to_addMed"
+            app:destination="@id/addMed" />
+        <action
+            android:id="@+id/action_addBarcode_to_settingsFrag"
+            app:destination="@id/settingsFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/addImage"
+        android:name="com.example.capstone2test.AddImage"
+        android:label="fragment_add_image"
+        tools:layout="@layout/fragment_add_image" >
+        <action
+            android:id="@+id/action_addImage_to_addFood"
+            app:destination="@id/addFood" />
+        <action
+            android:id="@+id/action_addImage_to_addMed"
+            app:destination="@id/addMed" />
+        <action
+            android:id="@+id/action_addImage_to_settingsFrag"
+            app:destination="@id/settingsFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/addText"
+        android:name="com.example.capstone2test.AddText"
+        android:label="fragment_add_text"
+        tools:layout="@layout/fragment_add_text" />
+    <fragment
+        android:id="@+id/foodJournal"
+        android:name="com.example.capstone2test.FoodJournal"
+        android:label="fragment_food_journal"
+        tools:layout="@layout/fragment_food_journal" >
+        <action
+            android:id="@+id/action_foodJournal_to_homepage"
+            app:destination="@id/homepage" />
+    </fragment>
+    <fragment
+        android:id="@+id/medJournal"
+        android:name="com.example.capstone2test.MedJournal"
+        android:label="fragment_med_journal"
+        tools:layout="@layout/fragment_med_journal" >
+        <action
+            android:id="@+id/action_medJournal_to_homepage"
+            app:destination="@id/homepage" />
+    </fragment>
+    <fragment
+        android:id="@+id/more2"
+        android:name="com.example.capstone2test.More"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/addDiseases"
+        android:name="com.example.capstone2test.AddDiseases"
+        android:label="fragment_add_diseases"
+        tools:layout="@layout/fragment_add_diseases" >
+        <action
+            android:id="@+id/action_addDiseases_to_homepage"
+            app:destination="@id/homepage" />
+    </fragment>
+</navigation>

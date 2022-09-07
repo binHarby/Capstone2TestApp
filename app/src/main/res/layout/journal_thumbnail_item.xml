@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    android:backgroundTint="@color/lightDark"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/slide_layout_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/slide_background">
+
+        <!-- TODO: Note that, unlike the grid view list, one card in the vertical and horizontal
+               lists effectively take up the width of the screen. This means you have more
+               room to display information spanning the width of the card.-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/item_background"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="125dp"
+            android:scaleType="center"
+            android:adjustViewBounds="true"
+            app:shapeAppearanceOverlay="@style/Roundish_20"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            app:shapeAppearanceOverlay="@style/Roundish_20"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+
+                android:id="@+id/journalName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/jounralPic"
+                android:layout_centerInParent="true"
+                android:text="@string/homepage_daily_cal_title"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+
+            <ImageView
+
+                android:layout_marginTop="15dp"
+                android:id="@+id/jounralPic"
+                android:layout_width="wrap_content"
+                android:layout_height="125dp"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/homepage_daily_cal_title"
+                android:src="@drawable/food_serrving_img" />
+
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

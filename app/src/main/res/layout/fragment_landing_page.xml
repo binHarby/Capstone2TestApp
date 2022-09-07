@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LandingPage">
+
+
+    <ImageView
+        android:id="@+id/landingBg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/homepage_add_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/girl_workout_app_bg" />
+
+    <android.widget.Button
+        android:id="@+id/landingBtn1"
+        android:layout_width="363dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="174dp"
+        android:background="@drawable/gradient_pink_button_bg"
+        android:backgroundTint="@null"
+        android:text="@string/landing_1st_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <android.widget.Button
+        android:id="@+id/landingBtn2"
+        android:layout_width="363dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/transparent_bg_white_boarder"
+        android:text="@string/landing_2nd_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/landingBtn1" />
+
+    <TextView
+        android:id="@+id/landingWelcomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="350dp"
+        android:text="@string/landing_welcome_title"
+        android:textAllCaps="false"
+        android:textColor="@color/pink"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/landingWelcomeTxt"
+        android:layout_width="309dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:text="@string/landing_welcome_text"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/landingWelcomeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/landingWelcomeTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

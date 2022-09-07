@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightDark"
+    tools:context=".SettingsFrag">
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsFirstNameCard"
+              android:layout_marginTop="25dp"
+              app:layout_constraintTop_toTopOf="parent"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsFirstNameTv"
+                      android:text="@string/settings_firstname_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsFirstName"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:textAlignment="textEnd"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:text="@string/settings_firstname"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerFirstName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsFirstNameCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsLastNameCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerFirstName"
+              android:layout_marginTop="25dp"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsLastNameTv"
+                      android:text="@string/settings_lastname_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsLastName"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:textAlignment="textEnd"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:text="@string/settings_lastname"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerLastName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsLastNameCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsProfileCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsLastNameCard"
+              android:layout_marginTop="25dp"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsProfileImgTv"
+                      android:text="@string/settings_profile_img_tv"
+                      android:textSize="25sp"
+                      android:layout_marginTop="30dp"
+                      android:textColor="@color/white"
+                      android:layout_weight="1"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <com.google.android.material.imageview.ShapeableImageView
+                      android:id="@+id/settingsProfileImg"
+                      android:layout_width="0dp"
+                      android:layout_height="100dp"
+                      android:layout_weight="3"
+                      android:layout_marginStart="120dp"
+                      android:padding="5dp"
+                      android:scaleType="centerCrop"
+                      android:src="@drawable/man_smile_app_profile"
+                      app:shapeAppearanceOverlay="@style/Circular"
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerProfile"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsProfileCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsHeightCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerProfile"
+              android:layout_marginTop="25dp"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsHeightTv"
+                      android:text="@string/settings_height_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsHeight"
+                      android:layout_width="wrap_content"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="160dp"
+                      android:text="@string/settings_height"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerHeight"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsHeightCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsWeightCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerHeight"
+              android:layout_marginTop="25dp"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsWeightTv"
+                      android:text="@string/settings_weight_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsWeight"
+                      android:layout_width="wrap_content"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="190dp"
+                      android:text="@string/settings_weight"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerWeight"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsWeightCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsBloodCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerWeight"
+              android:layout_marginTop="25dp"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsBloodTv"
+                      android:text="@string/settings_blood_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsBlood"
+                      android:layout_width="wrap_content"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="160dp"
+                      android:text="@string/settings_blood"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerBlood"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsProfileCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsDOBCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerBlood"
+              android:layout_marginTop="25dp"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsDOBTv"
+                      android:text="@string/settings_DOB_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsDOB"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:textAlignment="textEnd"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:text="@string/settings_DOB"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerDOB"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsDOBCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsGenderCard"
+              android:layout_marginTop="25dp"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerDOB"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsGenderTv"
+                      android:text="@string/settings_gender_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsGender"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:textAlignment="textEnd"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:text="@string/settings_gender"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerGender"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsGenderCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsActivityCard"
+              android:layout_marginTop="25dp"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerGender"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsActivityTv"
+                      android:text="@string/settings_activity_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsActivity"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:textAlignment="textEnd"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:text="@string/settings_height"
+
+
+                      />
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerActivity"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsActivityCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsEmailCard"
+              android:layout_marginTop="25dp"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerActivity"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsEmailTv"
+                      android:text="@string/settings_email_tv"
+                      android:textSize="25sp"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+                  <TextView
+                      android:id="@+id/settingsEmail"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:textAlignment="textEnd"
+                      android:textColor="@color/pink"
+                      android:textSize="19sp"
+                      android:text="@string/settings_email"
+
+
+                      />
+
+              </LinearLayout>
+
+
+          </androidx.cardview.widget.CardView>
+          <com.google.android.material.divider.MaterialDivider
+              android:id="@+id/settingsDividerReset"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:dividerColor="@color/lightGrey"
+              app:layout_constraintTop_toBottomOf="@id/settingsEmailCard"
+              />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/settingsResetCard"
+              app:layout_constraintTop_toBottomOf="@id/settingsDividerReset"
+              android:clickable="true"
+              android:focusable="true"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              >
+              <LinearLayout
+                  android:background="@color/lightDark"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  >
+                  <TextView
+                      android:id="@+id/settingsRestTv"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="@string/switch_settings_tv"
+                      android:textSize="21sp"
+                     android:textColor="@color/white"
+                      />
+
+                  <Button
+                      android:id="@+id/settingsReset"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:layout_weight="2"
+                      android:textColor="@color/white"
+                      android:textSize="25sp"
+                      android:text="@string/switch_btn"
+                      />
+
+              </LinearLayout>
+
+
+          </androidx.cardview.widget.CardView>
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/settingsbottomNavBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/settingsbottomNavBar"
+                android:layout_width="match_parent"
+                app:fabAlignmentMode="center"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:padding="10dp"
+                app:fabCradleMargin="20dp"
+                app:fabCradleRoundedCornerRadius="30dp"
+                app:fabCradleVerticalOffset="0dp"
+                >
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/settingsbottomNavView"
+                    android:background="@drawable/transparent_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu="@menu/settings_bot_nav"
+                    />
+
+
+
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/settingsbottomNavViewFAB"
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/homepage_add_desc"
+                android:layout_height="wrap_content"
+                android:tint="@color/pink"
+                app:layout_anchor="@id/settingsbottomNavBar"
+                android:src="@drawable/ic_baseline_add_24_black" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/settingsaddFoodNow"
+            android:layout_width="wrap_content"
+            android:tint="@color/pink"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/settingsbottomNavBarLayout"
+            android:src="@drawable/restaurant_menu_48px"
+
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/settingsaddMedicationNow"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:tint="@color/pink"
+            android:src="@drawable/medication_liquid_48px"
+            android:layout_above="@+id/settingsbottomNavBarLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="225dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    </RelativeLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

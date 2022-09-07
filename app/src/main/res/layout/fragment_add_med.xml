@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightDark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddMed">
+
+    <ScrollView
+        android:id="@+id/addmedication_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/addmedication_background"
+                android:layout_width="500dp"
+                android:layout_height="400dp"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/meds_app_bg" />
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/lightDark"
+                android:layout_marginTop="360dp"
+                app:cardCornerRadius="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/medicationName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/medication_liquid_48px"
+                        app:startIconContentDescription="@string/medication_daily_hint"
+                        android:hint="@string/medication_name_hint"
+                        style="@style/Widget.Capstone2Test.TextInputLayout"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:inputType="text"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/medicationDailyGoal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/medicationName"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_baseline_1x_mobiledata_24"
+                        app:startIconContentDescription="@string/medication_daily_hint"
+                        android:hint="@string/medication_daily_hint"
+                        style="@style/Widget.Capstone2Test.TextInputLayout"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/medicationDoseUnit"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/medicationDailyGoal"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_baseline_1x_mobiledata_24"
+                        app:startIconContentDescription="@string/medication_dose_hint"
+                        android:hint="@string/medication_dose_hint"
+                        style="@style/Widget.Capstone2Test.TextInputLayout"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:inputType="text"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/medicaitonIllness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/medicationDoseUnit"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_baseline_question_mark_24"
+                        app:startIconContentDescription="@string/medication_illness_hint"
+                        android:hint="@string/medication_illness_hint"
+                        style="@style/Widget.Capstone2Test.TextInputLayout"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:inputType="textAutoCorrect"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/medicationscan"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:layout_below="@id/medicaitonIllness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/gradient_pink_button_bg"
+                        android:text="Add Medication"
+                        app:icon="@drawable/ic_baseline_add_24" />
+                    <TextView
+                        android:id="@+id/medicationResultTv"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/medicationscan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medication_result_tv"
+                        android:textColor="@color/lightGreen"
+                        android:paddingBottom="90dp"
+                        />
+
+
+
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/medicationbottomNavBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/medicationbottomNavBar"
+                android:layout_width="match_parent"
+                app:fabAlignmentMode="center"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:padding="10dp"
+                app:fabCradleMargin="20dp"
+                app:fabCradleRoundedCornerRadius="30dp"
+                app:fabCradleVerticalOffset="0dp"
+                >
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/medicationbottomNavView"
+                    android:background="@drawable/transparent_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu="@menu/add_med_nav"
+                    />
+
+
+
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/medicationbottomNavViewFAB"
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/homepage_add_desc"
+                android:layout_height="wrap_content"
+                android:tint="@color/pink"
+                app:layout_anchor="@id/medicationbottomNavBar"
+                android:src="@drawable/ic_baseline_add_24_black" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/frommedicationaddFoodNow"
+            android:layout_width="wrap_content"
+            android:tint="@color/pink"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/medicationbottomNavBarLayout"
+            android:src="@drawable/restaurant_menu_48px"
+
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fromamedicationaddMedicationNow"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:tint="@color/pink"
+            android:src="@drawable/medication_liquid_48px"
+            android:layout_above="@+id/medicationbottomNavBarLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="225dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

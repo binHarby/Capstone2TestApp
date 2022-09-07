@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightDark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddFood">
+
+  <ScrollView
+      android:id="@+id/addfood_scrollview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+         <com.google.android.material.imageview.ShapeableImageView
+             android:id="@+id/addfood_background"
+             android:layout_width="500dp"
+             android:layout_height="375dp"
+             android:layout_alignParentTop="true"
+             android:adjustViewBounds="true"
+             android:scaleType="centerCrop"
+             android:src="@drawable/biryani" />
+         <androidx.cardview.widget.CardView
+             android:backgroundTint="@color/lightDark"
+             android:layout_marginTop="360dp"
+             app:cardCornerRadius="50dp"
+             android:layout_alignParentTop="true"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_marginTop="30dp">
+
+                 <ImageView
+                     android:id="@+id/addfoodCameraIcon"
+                     android:layout_width="80dp"
+                     android:layout_height="60dp"
+                     android:layout_below="@+id/addfoodSearchView"
+                     android:layout_marginStart="120dp"
+                     android:contentDescription="@string/zxing_msg_camera_framework_bug"
+                     android:src="@drawable/ic_baseline_camera_alt_24" />
+                 <ImageView
+                     android:id="@+id/addfoodCodeIcon"
+                     android:layout_below="@+id/addfoodSearchView"
+                     android:layout_toEndOf="@+id/addfoodCameraIcon"
+                     android:contentDescription="@string/zxing_msg_camera_framework_bug"
+                     android:layout_width="80dp"
+                     android:src="@drawable/ic_baseline_qr_code_scanner_24"
+                     android:layout_height="60dp" />
+
+                 <ImageView
+                     android:id="@+id/addfoodSearchView"
+                     android:layout_width="80dp"
+                     android:layout_height="60dp"
+                     android:layout_alignParentTop="true"
+                     android:layout_centerHorizontal="true"
+                     android:layout_marginStart="120dp"
+                     android:contentDescription="@string/zxing_msg_camera_framework_bug"
+                     android:src="@drawable/ic_baseline_textsms_24"
+                     >
+
+                 </ImageView>
+
+                 <TextView
+                     android:id="@+id/addfoodSearchResultsTv"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@id/addfoodCameraIcon"
+                     android:text="@string/addfood_search_results"
+                     android:textColor="@color/pink"
+                     android:textSize="32sp" />
+
+
+
+
+             </RelativeLayout>
+
+
+         </androidx.cardview.widget.CardView>
+     </RelativeLayout>
+
+  </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/addfoodbottomNavBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/addfoodbottomNavBar"
+                android:layout_width="match_parent"
+                app:fabAlignmentMode="center"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:padding="10dp"
+                app:fabCradleMargin="20dp"
+                app:fabCradleRoundedCornerRadius="30dp"
+                app:fabCradleVerticalOffset="0dp"
+                >
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/addfoodbottomNavView"
+                    android:background="@drawable/transparent_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu="@menu/add_food_nav"
+                    />
+
+
+
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addfoodbottomNavViewFAB"
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/homepage_add_desc"
+                android:layout_height="wrap_content"
+                android:tint="@color/pink"
+                app:layout_anchor="@id/addfoodbottomNavBar"
+                android:src="@drawable/ic_baseline_add_24_black" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="@string/homepage_add_desc"
+            android:id="@+id/fromaddfoodaddFoodNow"
+            android:layout_width="wrap_content"
+            android:tint="@color/pink"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/addfoodbottomNavBarLayout"
+            android:src="@drawable/restaurant_menu_48px"
+
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fromaddfoodaddMedicationNow"
+            android:layout_width="wrap_content"
+            android:contentDescription="@string/homepage_add_desc"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:tint="@color/pink"
+            android:src="@drawable/medication_liquid_48px"
+            android:layout_above="@+id/addfoodbottomNavBarLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="225dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

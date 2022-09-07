@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Homepage">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarFadeDuration="@integer/material_motion_duration_short_2"
+        android:scrollbarSize="5dp"
+        android:fillViewport="true"
+        android:background="@color/lightDark"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ScrollViewSize">
+            <RelativeLayout
+                android:id="@+id/homepagePart1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightDark"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/homepageProfileImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="60dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:padding="5dp"
+                    android:src="@drawable/man_smile_app_profile"
+                    app:shapeAppearanceOverlay="@style/Circular"
+                    app:strokeColor="@color/pink"
+                    app:strokeWidth="10dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/homepageCardInfo"
+                    android:layout_width="wrap_content"
+                    android:focusable="true"
+                    android:layout_marginTop="55dp"
+                    android:layout_toEndOf="@+id/homepageProfileImage"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="60dp"
+                    android:backgroundTint="@color/lightDark"
+                    android:layout_height="120dp" >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        >
+
+                        <ImageView
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:id="@+id/setting_ico"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homepageUserName"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/homepageUserName"
+                            android:contentDescription="@string/homepage_setting_desc"
+                            android:src="@drawable/ic_baseline_settings_24"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/homepageUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/homepage_name"
+                            android:textColor="@color/pink"
+
+
+                            android:textSize="32sp" />
+
+                        <TextView
+                            android:id="@+id/homepageActTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homepageUserName"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/homepage_activity_title"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/homepageActValue"
+                            android:layout_width="wrap_content"
+                            android:layout_alignStart="@+id/homepageActTitle"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homepageActTitle"
+                            android:text="@string/homepage_activity_value"
+                            android:textColor="@color/pink"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/homepageControlTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_below="@+id/homepageUserName"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_toEndOf="@+id/homepageActTitle"
+                            android:text="@string/homepage_control_title"
+                            android:textColor="@color/white" />
+                        <TextView
+                            android:id="@+id/homepageControlValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homepageControlTitle"
+                            android:layout_alignStart="@+id/homepageControlTitle"
+                            android:text="@string/homepage_control_value"
+                            android:textColor="@color/pink"
+                            android:textSize="14sp" />
+
+
+
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:layout_below="@+id/homepageProfileImage"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:backgroundTint="@color/lightDark"
+                    >
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardview2"
+                        android:layout_width="wrap_content"
+                        android:backgroundTint="@color/lightDark"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/diseases_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="24dp"
+                                android:text="@string/homepage_diseases_title"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/add_disease"
+                                android:clickable="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="50dp"
+                                android:layout_toEndOf="@+id/diseases_title"
+                                android:contentDescription="@string/homepage_add_desc"
+                                android:src="@drawable/ic_baseline_add_24"
+                                android:focusable="true" />
+
+                            <TextView
+                                android:id="@+id/diseases_n1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/diseases_title"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/lightGrey"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/diseases_n2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/diseases_n1"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/lightGrey"
+                                android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/diseases_n3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/diseases_n2"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/lightGrey"
+                                android:textSize="16sp" />
+
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardview3"
+                        android:backgroundTint="@color/lightDark"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/medication_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="24dp"
+                                android:text="@string/homepage_med_title"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:id="@+id/add_medication"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="50dp"
+                                android:layout_toEndOf="@+id/medication_title"
+                                android:contentDescription="@string/homepage_add_desc"
+                                android:src="@drawable/ic_baseline_add_24" />
+                            <TextView
+                                android:id="@+id/medication_n1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_below="@+id/medication_title"
+                                android:textColor="@color/lightGrey"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/medication_n2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_below="@+id/medication_n1"
+                                android:textColor="@color/lightGrey"
+                                android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/medication_n3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/medication_n2"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/lightGrey"
+                                android:textSize="16sp" />
+
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/homepagePart2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/homepagePart1"
+                android:background="@drawable/transparent_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+                <TextView
+                    android:id="@+id/homepageAchTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/homepage_ach_title"
+                    android:textColor="@color/white" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/homepageSlideCard1"
+                    android:layout_width="350dp"
+                    android:layout_height="142dp"
+                    android:layout_below="@id/homepageAchTitle"
+                    android:layout_marginStart="24dp"
+                    app:cardElevation="0dp"
+                    android:background="@color/lightDark"
+                    >
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        app:strokeColor="@color/lightDark"
+                        app:shapeAppearanceOverlay="@style/Roundish_10"
+                        app:strokeWidth="12dp"
+                        android:src="@drawable/slide_background"
+                        />
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       >
+                       <TextView
+
+                           android:id="@+id/homepageDailyCalTitle"
+                           android:textColor="@color/white"
+                           android:layout_alignParentTop="true"
+                           android:layout_marginTop="15dp"
+                           android:layout_marginStart="15dp"
+                           android:text="@string/homepage_daily_cal_title"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"/>
+
+                       <ImageView
+
+                           android:id="@+id/homepageFoodIcon"
+                           android:layout_width="120dp"
+                           android:layout_height="110dp"
+                           android:layout_below="@+id/homepageDailyCalTitle"
+                           android:layout_alignStart="@+id/homepageDailyCalTitle"
+                           android:contentDescription="@string/homepage_daily_cal_title"
+                           android:layout_alignEnd="@+id/homepageDailyCalTitle"
+                           android:src="@drawable/food_serrving_img" />
+
+                       <TextView
+
+                           android:id="@+id/homepageDailyCalValue"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_below="@+id/homepageDailyCalTitle"
+                           android:layout_marginStart="15dp"
+                           android:layout_marginTop="15dp"
+                           android:layout_toEndOf="@+id/homepageFoodIcon"
+                           android:text="@string/homepage_daily_cal_value"
+                           android:textColor="@color/white" />
+
+                   </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/homepageSlideCard2"
+                    android:layout_width="110dp"
+                    android:layout_height="55dp"
+                    android:layout_alignStart="@+id/homepageSlideCard1"
+                    android:layout_below="@id/homepageSlideCard1"
+                    app:cardElevation="0dp"
+                    android:background="@color/lightDark"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        app:strokeColor="@color/lightDark"
+                        app:shapeAppearanceOverlay="@style/Roundish_20"
+                        app:strokeWidth="12dp"
+                        android:src="@drawable/slide_background"
+                        />
+
+                    <TextView
+                        android:id="@+id/homepageHeightTv"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:layout_marginStart="25dp"
+                        android:layout_width="55dp"
+                        android:layout_height="40dp"
+                        android:text="@string/homepage_height_tv"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/homepageSlideCard3"
+                    android:layout_width="110dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@id/homepageSlideCard1"
+                    android:layout_toEndOf="@+id/homepageSlideCard2"
+                    android:layout_marginStart="16dp"
+                    app:cardElevation="0dp"
+                    android:background="@color/lightDark"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        app:strokeColor="@color/lightDark"
+                        app:shapeAppearanceOverlay="@style/Roundish_20"
+                        app:strokeWidth="12dp"
+                        android:src="@drawable/slide_background"
+                        />
+
+                    <TextView
+                        android:id="@+id/homepageWeightTv"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="25dp"
+                        android:textAlignment="center"
+                        android:layout_width="55dp"
+                        android:layout_height="40dp"
+                        android:text="@string/homepage_weight_tv"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/homepageSlideCard4"
+                    android:layout_width="110dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@id/homepageSlideCard1"
+                    android:layout_toEndOf="@+id/homepageSlideCard3"
+                    android:layout_alignEnd="@+id/homepageSlideCard1"
+                    android:layout_marginStart="16dp"
+                    app:cardElevation="0dp"
+                    android:background="@color/lightDark"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        app:strokeColor="@color/lightDark"
+                        app:shapeAppearanceOverlay="@style/Roundish_20"
+                        app:strokeWidth="12dp"
+                        android:src="@drawable/slide_background"
+                        />
+
+                    <TextView
+                        android:id="@+id/homepageAgeTv"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="25dp"
+                        android:textAlignment="center"
+                        android:layout_width="55dp"
+                        android:layout_height="40dp"
+                        android:text="@string/homepage_age_tv"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/homepagePart3"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/homepagePart2"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+                <TextView
+                    android:id="@+id/homepageJournalTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/homepage_journal_tv"
+                    android:textColor="@color/white" />
+
+                <FrameLayout
+                    android:layout_below="@+id/homepageJournalTv"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/journals_thumbnails_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_gravity="center"/>
+
+                </FrameLayout>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/homepagelastpart"
+                app:layout_constraintTop_toBottomOf="@+id/homepagePart3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/transparent_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingBottom="100dp"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <TextView
+                    android:id="@+id/homepageFitTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/homepage_fit_title"
+                    android:textColor="@color/white" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/homepageFitSlide"
+                    android:layout_width="350dp"
+                    android:layout_height="142dp"
+                    android:layout_below="@id/homepageFitTitle"
+                    android:layout_marginStart="24dp"
+                    app:cardElevation="0dp"
+                    android:background="@color/lightDark"
+                    >
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        app:strokeColor="@color/lightDark"
+                        app:shapeAppearanceOverlay="@style/Roundish_10"
+                        app:strokeWidth="12dp"
+                        android:src="@drawable/slide_background"
+                        />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+
+                        <TextView
+
+                            android:id="@+id/homepageGoogleFitCals"
+                            android:textColor="@color/white"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+
+                            android:id="@+id/homepageGoogleFitSteps"
+                            android:textColor="@color/white"
+                            android:layout_below="@id/homepageGoogleFitCals"
+                            android:layout_marginTop="15dp"
+                            android:textSize="32sp"
+                            android:layout_marginStart="15dp"
+                            android:text=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <Button
+                    android:id="@+id/syncGoogleFit"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/homepageFitSlide"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="21dp"
+                    android:background="@drawable/gradient_pink_button_bg"
+                    android:text="@string/homepage_fit_sync"
+                    app:icon="@drawable/ic_baseline_refresh_24" />
+
+            </RelativeLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/bottomNavBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottomNavBar"
+                android:layout_width="match_parent"
+                app:fabAlignmentMode="center"
+
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:padding="10dp"
+                app:fabCradleMargin="20dp"
+                app:fabCradleRoundedCornerRadius="30dp"
+                app:fabCradleVerticalOffset="0dp"
+                >
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNavView"
+                    android:background="@drawable/transparent_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu="@menu/bottom_nav"
+                    />
+
+
+
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/bottomNavViewFAB"
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/homepage_add_desc"
+                android:layout_height="wrap_content"
+                android:tint="@color/pink"
+                app:layout_anchor="@id/bottomNavBar"
+                android:src="@drawable/ic_baseline_add_24_black" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addFoodNow"
+            android:layout_width="wrap_content"
+            android:tint="@color/pink"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/bottomNavBarLayout"
+            android:src="@drawable/restaurant_menu_48px"
+
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addMedicationNow"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:tint="@color/pink"
+            android:src="@drawable/medication_liquid_48px"
+            android:layout_above="@+id/bottomNavBarLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="225dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    </RelativeLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

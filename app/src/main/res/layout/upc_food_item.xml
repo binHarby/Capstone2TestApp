@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="310dp"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="60dp"
+    app:cardElevation="10dp"
+    android:backgroundTint="@color/lightDark"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/slide_background">
+
+        <!-- TODO: Note that, unlike the grid view list, one card in the vertical and horizontal
+               lists effectively take up the width of the screen. This means you have more
+               room to display information spanning the width of the card.-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/upc_item_background"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:adjustViewBounds="true"
+            app:shapeAppearanceOverlay="@style/Roundish_20"
+            android:src="@drawable/slide_background"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+
+                android:id="@+id/upcFoodName"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:text="@string/homepage_daily_cal_title"
+                android:layout_below="@+id/upcFoodPic"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+
+                android:layout_marginTop="15dp"
+                android:id="@+id/upcFoodPic"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/homepage_daily_cal_title"
+                android:src="@drawable/food_serrving_img" />
+            <TextView
+
+                android:id="@+id/upcBrandName"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:text="@string/homepage_daily_cal_title"
+                android:layout_below="@+id/upcFoodName"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

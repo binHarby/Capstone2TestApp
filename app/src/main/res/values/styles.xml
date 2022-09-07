@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Circular">
+
+        <item name="cornerSize">
+            50%
+        </item>
+    </style>
+    <style name="Roundish_10">
+
+        <item name="cornerSize">
+            10%
+        </item>
+    </style>
+    <style name="Roundish_20">
+
+        <item name="cornerSize">
+            20%
+        </item>
+    </style>
+    <style name="SearchView">
+        <item name="backgroundColor"></item>
+        <item name="viewSearchInputTextColor"></item>
+        <item name="viewSuggestionItemTextColor"></item>
+        <item name="hintTextColor"></item>
+        <item name="dividerColor"></item>
+        <item name="clearBtnColor"></item>
+        <item name="leftActionColor"></item>
+        <item name="menuItemIconColor"></item>
+        <item name="suggestionRightIconColor"></item>
+        <item name="actionMenuOverflowColor"></item>
+    </style>
+</resources>

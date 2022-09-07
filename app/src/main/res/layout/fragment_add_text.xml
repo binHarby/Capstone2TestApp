@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightDark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddText">
+
+    <ScrollView
+        android:id="@+id/addtext_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/addtext_background"
+                android:layout_alignParentTop="true"
+                android:layout_width="500dp"
+                android:scaleType="centerCrop"
+                android:layout_height="375dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/chickenbiryanibowltop"
+                />
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/lightDark"
+                android:layout_marginTop="360dp"
+                app:cardCornerRadius="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/textSearchView"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="300dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/search_style"
+                        android:theme="@style/ActionBarThemeOverlay"
+                        android:hint="@string/addfood_search_hint"
+                        android:textColorHint="@color/lightGrey"
+                        />
+                    <Button
+                        android:id="@+id/textscan"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toEndOf="@+id/textSearchView"
+                        android:background="@drawable/gradient_pink_button_bg"
+                        app:icon="@drawable/ic_baseline_search_24" />
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/textSelected"
+                        android:visibility="invisible"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/textscan"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:src="@drawable/chickenbiryanibowltop"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/textSearchResultTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textSelected"
+                        android:text="@string/addfood_search_results"
+                        android:textColor="@color/pink"
+                        android:textSize="32sp" />
+                    <LinearLayout
+                        android:id="@+id/textFoodProperties"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/textSearchResultTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/addtextAmount"
+                        android:visibility="invisible"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textFoodProperties"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+
+                        app:startIconDrawable="@drawable/ic_baseline_1x_mobiledata_24"
+                        app:startIconContentDescription="@string/medication_daily_hint"
+                        android:hint="@string/addimage_amont_hint"
+                        style="@style/Widget.Capstone2Test.TextInputLayout"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:text="1"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <Button
+                        android:id="@+id/addtextAnalyizwBtn"
+                        android:visibility="invisible"
+                        android:clickable="false"
+                        android:focusable="false"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/addtextAmount"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/gradient_pink_button_bg"
+                        android:text="Eat"
+                        app:icon="@drawable/restaurant_menu_48px"
+                        />
+
+
+                        <TextView
+                            android:id="@+id/recommendationTv"
+                            android:layout_width="match_parent"
+                            android:textSize="25sp"
+                            android:textAlignment="center"
+                            android:layout_below="@+id/addtextAnalyizwBtn"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/briefBtnTv"
+                        android:text="Brief"
+                        android:textColor="@color/white"
+                        android:textSize="37sp"
+                        android:layout_marginEnd="240dp"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_below="@+id/recommendationTv"
+                        android:layout_height="wrap_content"/>
+                    <ToggleButton
+                        android:id="@+id/briefBtn"
+                        android:clickable="true"
+                       android:layout_toEndOf="@id/briefBtnTv"
+                        android:focusable="true"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recommendationTv"
+                        android:background="@drawable/gradient_pink_button_bg"
+                        android:text="Show Brief"
+                        />
+                    <TextView
+                        android:id="@+id/detailsBtnTv"
+                        android:textColor="@color/white"
+                        android:textSize="37sp"
+                        android:visibility="invisible"
+                        android:text="Details"
+                        android:layout_marginEnd="220dp"
+                        android:layout_width="wrap_content"
+                        android:layout_below="@+id/briefBtn"
+                        android:layout_height="wrap_content"
+                        />
+                    <ToggleButton
+                        android:id="@+id/detailsBtn"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/detailsBtnTv"
+                        android:layout_below="@id/briefBtn"
+                        android:background="@drawable/gradient_pink_button_bg"
+                        />
+                    <TextView
+                        android:id="@+id/reportBtnTv"
+                        android:text="Report"
+                        android:textColor="@color/white"
+                        android:textSize="37sp"
+                        android:visibility="invisible"
+                        android:layout_marginEnd="220dp"
+                        android:layout_width="wrap_content"
+                        android:layout_below="@+id/detailsBtn"
+                        android:layout_height="wrap_content"/>
+                    <ToggleButton
+                        android:id="@+id/reportBtn"
+                        android:layout_width="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="invisible"
+                        android:layout_toEndOf="@+id/reportBtnTv"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailsBtn"
+                        android:background="@drawable/gradient_pink_button_bg"
+                        />
+                        <TextView
+                            android:layout_below="@id/reportBtn"
+                            android:visibility="invisible"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:id="@+id/textBriefCont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    <TextView
+                        android:id="@+id/textDetailsCont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textBriefCont"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:visibility="invisible"
+                        />
+                        <TextView
+                            android:visibility="invisible"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:layout_below="@+id/textDetailsCont"
+                            android:id="@+id/textReportCont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="300dp"
+                            />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/textbottomNavBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/textbottomNavBar"
+                android:layout_width="match_parent"
+                app:fabAlignmentMode="center"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:padding="10dp"
+                app:fabCradleMargin="20dp"
+                app:fabCradleRoundedCornerRadius="30dp"
+                app:fabCradleVerticalOffset="0dp"
+                >
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/textbottomNavView"
+                    android:background="@drawable/transparent_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu="@menu/add_text_nav"
+                    />
+
+
+
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/textbottomNavViewFAB"
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/homepage_add_desc"
+                android:layout_height="wrap_content"
+                android:tint="@color/pink"
+                app:layout_anchor="@id/textbottomNavBar"
+                android:src="@drawable/ic_baseline_add_24_black" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="@string/homepage_add_desc"
+            android:id="@+id/fromtextaddFoodNow"
+            android:layout_width="wrap_content"
+            android:tint="@color/pink"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/textbottomNavBarLayout"
+            android:src="@drawable/restaurant_menu_48px"
+
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="@string/homepage_add_desc"
+            android:id="@+id/fromatextaddMedicationNow"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:tint="@color/pink"
+            android:src="@drawable/medication_liquid_48px"
+            android:layout_above="@+id/textbottomNavBarLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="225dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
