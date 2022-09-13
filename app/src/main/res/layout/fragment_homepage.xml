@@ -13,7 +13,7 @@
         android:scrollbarFadeDuration="@integer/material_motion_duration_short_2"
         android:scrollbarSize="5dp"
         android:fillViewport="true"
-        android:background="@color/lightDark"
+            android:background="@color/lightDark"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -634,7 +634,7 @@
             android:clickable="true"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="120dp"
+            android:layout_marginStart="100dp"
             android:layout_marginBottom="10dp"
             android:layout_above="@+id/bottomNavBarLayout"
             android:src="@drawable/restaurant_menu_48px"
@@ -653,11 +653,25 @@
             android:src="@drawable/medication_liquid_48px"
             android:layout_above="@+id/bottomNavBarLayout"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="225dp"
+            android:layout_marginStart="230dp"
             android:layout_marginBottom="8dp"
-            >
+           />
 
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addReadingsNow"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:tint="@color/pink"
+
+            android:src="@drawable/ic_baseline_medical_services_24"
+            android:layout_above="@+id/bottomNavBarLayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="165dp"
+            android:layout_marginBottom="8dp"
+            />
 
 
     </RelativeLayout>

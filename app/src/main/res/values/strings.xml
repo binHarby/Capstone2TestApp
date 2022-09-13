@@ -90,6 +90,10 @@
     <string name="logout_tv">Signout</string>
     <string name="services_tv">Services</string>
     <string name="support_tv">Support</string>
+    <string name="disease">Disease</string>
+    <string name="sys">Sys</string>
+    <string name="oia">OIA</string>
+
     <string-array name="foodList">
         <item>aroma</item>
         <item>bagel</item>

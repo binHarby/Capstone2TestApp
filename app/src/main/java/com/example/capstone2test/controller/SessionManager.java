@@ -59,6 +59,7 @@ public class SessionManager {
     private static final String KEY_GENDER="gender";
     private static final String KEY_PASSWORD="password";
     private static final String KEY_TOKEN="token";
+    private static final String KEY_Login="login";
     private static final String KEY_FIRST_NAME="userFirst";
     private static final String KEY_LAST_NAME="userLast";
     /* Dates */
@@ -160,6 +161,21 @@ public class SessionManager {
 
 
     }
+    public boolean isUserLoggedIn(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(KEY_Login,false) ;
+
+    }
+    public void setUserLoggedIn(boolean b){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        /*ints*/
+        editor.putBoolean(KEY_Login,b);
+
+        editor.apply();
+
+
+    }
     public boolean isLoggedIn(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_TOKEN,null) !=null;
@@ -179,6 +195,8 @@ public class SessionManager {
 
 
     }
+
+
     public User getUser(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
 
@@ -214,7 +232,7 @@ public class SessionManager {
         }
 
         /*
-        User(int id, int age, int tdee, int bmi, int calGoal
+        Reading(int id, int age, int tdee, int bmi, int calGoal
             , int calDiff, int weight, int activiyLvl, String controlLvl
             , String email, String password, String token, String birthday
             , String bloodtype, String gender, String created_at, String updated_at
@@ -237,4 +255,5 @@ public class SessionManager {
 
         );
     }
+
 }

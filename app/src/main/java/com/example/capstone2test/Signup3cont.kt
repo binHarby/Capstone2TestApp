@@ -99,7 +99,7 @@ class Signup3cont : Fragment() {
         val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
             Method.POST, URLs.URL_USER, jsonBody,
             Response.Listener { response ->
-                Toast.makeText(requireContext(), "Request to create User Success", Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), "Request to create Reading Success", Toast.LENGTH_LONG)
                     .show()
                 login(email,password)
 
@@ -321,7 +321,7 @@ class Signup3cont : Fragment() {
                     user.setPassword(binding.signup3Password.editText?.text.toString().trim())
                     SessionManager.getInstance(requireActivity().applicationContext).userLogin(user)
                     user = SessionManager.getInstance(requireActivity().applicationContext).getUser()
-
+                    SessionManager.getInstance(requireActivity().applicationContext).isUserLoggedIn = true
                     Log.d("response", nwjson.toString())
                     binding.signup3ProgressBar.visibility=View.INVISIBLE
                     NavToHomepage()

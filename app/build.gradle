@@ -3,6 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'org.jetbrains.dokka'
+    id 'kotlin-parcelize'
+
+    id 'kotlin-kapt'
+
+
 }
 
 android {
@@ -65,4 +70,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
+
+    def room_version = "2.4.3"
+
+    implementation "androidx.room:room-runtime:$room_version"
+
+    def lifecycle_version = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation 'androidx.room:room-ktx:2.2.1'
+    kapt "androidx.room:room-compiler:2.2.1"
+
+
+
 }

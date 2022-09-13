@@ -31,6 +31,9 @@
         <action
             android:id="@+id/landing_to_Signup"
             app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_landingPage_to_homepage"
+            app:destination="@id/homepage" />
     </fragment>
     <fragment
         android:id="@+id/signin"
@@ -68,6 +71,17 @@
         <action
             android:id="@+id/recover_to_landingPage"
             app:destination="@id/landingPage" />
+        <action
+            android:id="@+id/action_recover_self"
+            app:destination="@id/recover" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/readings"
+        android:name="com.example.capstone2test.Readings"
+        android:label="fragment_readings"
+        tools:layout="@layout/fragment_reading" >
+
     </fragment>
     <fragment
         android:id="@+id/signup2cont"
@@ -134,6 +148,10 @@
         <action
             android:id="@+id/homepage_to_addMed"
             app:destination="@id/addMed" />
+
+        <action
+            android:id="@+id/homepage_to_readings"
+            app:destination="@id/readings" />
         <action
             android:id="@+id/action_homepage_to_settingsFrag"
             app:destination="@id/settingsFrag" />

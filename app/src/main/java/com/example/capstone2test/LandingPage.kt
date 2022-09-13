@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.example.capstone2test.controller.SessionManager
 import com.example.capstone2test.databinding.FragmentLandingPageBinding
 
 
@@ -32,5 +33,13 @@ class LandingPage : Fragment() {
         return  binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        if(      SessionManager.getInstance(requireActivity().applicationContext).isUserLoggedIn)
+        {
+            val action = LandingPageDirections.actionLandingPageToHomepage()
+            Navigation.findNavController(binding.root).navigate(action)
+        }
+    }
 
 }

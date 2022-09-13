@@ -1,7 +1,7 @@
 package com.example.capstone2test.const
 
 object URLs {
-    val ROOT_URL:String = "http://192.168.1.73:8000/"
+    val ROOT_URL:String = "https://capstone-alameri.herokuapp.com/"
     val URL_LOGIN:String = ROOT_URL+"login/"
     /* To update a user add /[id] to URL_USER path */
     val URL_USER:String= ROOT_URL+"user/"

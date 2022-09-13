@@ -88,7 +88,7 @@ class Signin : Fragment() {
                         getUserInfoRequest(obj.getString("access_token"), obj)
 
                         //progBar.setVisibility(View.INVISIBLE);
-                        //User user=new User(obj.getString("access_token"));
+                        //Reading user=new Reading(obj.getString("access_token"));
                         //SessionManager.getInstance(getApplicationContext()).userLogin(user);
                         //finish();
                         //startActivity(new Intent(getApplicationContext(),homepage.class));
@@ -240,6 +240,8 @@ class Signin : Fragment() {
                     var user: User = gson.fromJson(nwjson.toString(), User::class.java)
                     user.setPassword(binding.signinPassword.toString().trim { it <= ' ' })
                     SessionManager.getInstance(requireActivity().applicationContext).userLogin(user)
+                    SessionManager.getInstance(requireActivity().applicationContext).isUserLoggedIn = true
+
                     user = SessionManager.getInstance(requireActivity().applicationContext).getUser()
 
                     Log.d("response", nwjson.toString())

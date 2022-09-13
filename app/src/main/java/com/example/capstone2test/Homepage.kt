@@ -131,7 +131,10 @@ class Homepage : Fragment() {
             action= HomepageDirections.homepageToAddMed()
             Navigation.findNavController(binding.root).navigate(action)
         }
-
+        binding.addReadingsNow.setOnClickListener {
+            action= HomepageDirections.homepageToReadings()
+            Navigation.findNavController(binding.root).navigate(action)
+        }
 
         binding.bottomNavView.setOnItemReselectedListener {item ->
             when(item.itemId){
@@ -230,10 +233,12 @@ class Homepage : Fragment() {
         if (!clicked){
             binding.addFoodNow.visibility=View.VISIBLE
             binding.addMedicationNow.visibility=View.VISIBLE
+            binding.addReadingsNow.visibility=View.VISIBLE
         }else {
 
             binding.addFoodNow.visibility=View.INVISIBLE
             binding.addMedicationNow.visibility=View.INVISIBLE
+            binding.addReadingsNow.visibility=View.INVISIBLE
         }
 
 
@@ -242,10 +247,12 @@ class Homepage : Fragment() {
         if (!clicked){
             binding.addFoodNow.startAnimation(fromBottom)
             binding.addMedicationNow.startAnimation(fromBottom)
+            binding.addReadingsNow.startAnimation(fromBottom)
             binding.bottomNavViewFAB.startAnimation(rotateOpen)
         }else {
             binding.addFoodNow.startAnimation(toBottom)
             binding.addMedicationNow.startAnimation(toBottom)
+            binding.addReadingsNow.startAnimation(toBottom)
             binding.bottomNavViewFAB.startAnimation(rotateClose)
 
         }
@@ -255,10 +262,12 @@ class Homepage : Fragment() {
         if (!clicked){
             binding.addFoodNow.isClickable=true
             binding.addMedicationNow.isClickable=true
+            binding.addReadingsNow.isClickable=true
         }else {
 
             binding.addFoodNow.isClickable=false
             binding.addMedicationNow.isClickable=false
+            binding.addReadingsNow.isClickable=false
         }
     }
 
