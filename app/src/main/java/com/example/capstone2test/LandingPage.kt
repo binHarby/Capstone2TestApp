@@ -12,7 +12,8 @@ import com.example.capstone2test.databinding.FragmentLandingPageBinding
 
 class LandingPage : Fragment() {
     private var _binding: FragmentLandingPageBinding? = null
-    // This property is only valid between onCreateView and
+
+    // requireContext() property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -32,6 +33,7 @@ class LandingPage : Fragment() {
         }
         return  binding.root
     }
+<<<<<<< Updated upstream
 
     override fun onStart() {
         super.onStart()
@@ -42,4 +44,6 @@ class LandingPage : Fragment() {
         }
     }
 
+=======
+>>>>>>> Stashed changes
 }

@@ -28,11 +28,10 @@ import org.json.JSONObject
 import uk.me.hardill.volley.multipart.MultipartRequest
 import uk.me.hardill.volley.multipart.MultipartRequest.FormPart
 import java.io.UnsupportedEncodingException
-import java.text.DateFormat
 
 class Signin : Fragment() {
-    private var _binding: FragmentSigninBinding?=null
-    private val binding get() =_binding!!
+    private var _binding: FragmentSigninBinding? = null
+    private val binding get() = _binding!!
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var action: NavDirections
@@ -43,15 +42,15 @@ class Signin : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding=FragmentSigninBinding.inflate(inflater,container,false)
-        val ioViewModel =  ViewModelProvider(this).get(IoViewModel::class.java)
+        _binding = FragmentSigninBinding.inflate(inflater, container, false)
+        val ioViewModel = ViewModelProvider(this).get(IoViewModel::class.java)
         gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ssz")
             .create()
         //code here
         binding.signinBtn.setOnClickListener {
-            email=  binding.signinEmail.editText?.text.toString()
-            password=binding.signinPassword.editText?.text.toString()
+            email = binding.signinEmail.editText?.text.toString()
+            password = binding.signinPassword.editText?.text.toString()
             //check if empty
             //check if valid
             if (TextUtils.isEmpty(email)) {
@@ -66,16 +65,16 @@ class Signin : Fragment() {
                 }
             }
             if (TextUtils.isEmpty(password)) {
-                binding.signinEmail.error=""
+                binding.signinEmail.error = ""
                 binding.signinPassword.error = "Please Enter Password"
                 binding.signinPassword.requestFocus()
                 return@setOnClickListener
             }
-                //do somethind with password and email
+            //do somethind with password and email
             //then go to homepage
-            binding.signinEmail.error=""
+            binding.signinEmail.error = ""
             binding.signinPassword.error = ""
-            binding.signingProgressBar.visibility=View.VISIBLE
+            binding.signingProgressBar.visibility = View.VISIBLE
             //check with backend
             //RequestQueue queue = VolleySingleton.getInstance(MainActivity.this).getRequestQueue();
             val request = MultipartRequest(
@@ -102,7 +101,7 @@ class Signin : Fragment() {
                 }
             ) {
                 it.printStackTrace()
-                binding.signingProgressBar.visibility=View.INVISIBLE
+                binding.signingProgressBar.visibility = View.INVISIBLE
                 Toast.makeText(requireContext(), "No such email registered", Toast.LENGTH_LONG)
                     .show()
             }
@@ -110,14 +109,9 @@ class Signin : Fragment() {
             request.addPart(FormPart("username", email))
             request.addPart(FormPart("password", password))
             VolleySingleton.getInstance(requireContext()).AddToRequestQueue(request)
-
-
-
             //move to next activity
             //action =SigninDirections.signinToHomepage()
             //Navigation.findNavController(binding.root).navigate(action)
-
-
         }
         binding.signinForgotPass.setOnClickListener {
             //go to Account Recovery
@@ -130,16 +124,16 @@ class Signin : Fragment() {
             action = SigninDirections.signinToSignup()
             Navigation.findNavController(binding.root).navigate(action)
         }
-
         return binding.root
     }
+
     fun getUserInfoRequest(token: String, oldResponse: JSONObject) {
         val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
             Method.GET, URLs.URL_USER_SINGLE, null //, jsonBody
             , Response.Listener { response ->
                 oldResponse.remove("token_type")
                 try {
-                    Log.d("entered request","but failed")
+                    Log.d("entered request", "but failed")
                     val newjson = deepMerge(oldResponse, response)
                     getUserGoals(token, newjson)
                     //Toast.makeText(MainActivity.this, newjson.toString(), Toast.LENGTH_SHORT).show();
@@ -245,13 +239,13 @@ class Signin : Fragment() {
                     user = SessionManager.getInstance(requireActivity().applicationContext).getUser()
 
                     Log.d("response", nwjson.toString())
-                    binding.signingProgressBar.visibility=View.INVISIBLE
-                    NavToHomepage()
+                    binding.signingProgressBar.visibility = View.INVISIBLE
+                    navToHomepage()
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
             }, Response.ErrorListener {
-                binding.signingProgressBar.visibility=View.INVISIBLE
+                binding.signingProgressBar.visibility = View.INVISIBLE
                 Toast.makeText(requireContext(), "Error on 4th request", Toast.LENGTH_SHORT).show()
             }) {
             //headers
@@ -265,10 +259,9 @@ class Signin : Fragment() {
         }
         VolleySingleton.getInstance(requireContext()).AddToRequestQueue(jsonObjectRequest)
     }
-    fun NavToHomepage(){
-        action =SigninDirections.signinToHomepage()
+
+    fun navToHomepage() {
+        action = SigninDirections.signinToHomepage()
         Navigation.findNavController(binding.root).navigate(action)
     }
-
-
 }
