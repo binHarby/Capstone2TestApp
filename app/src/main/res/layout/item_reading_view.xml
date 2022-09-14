@@ -3,83 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     app:cardCornerRadius="60dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="40dp"
     app:cardElevation="10dp"
     android:id="@+id/layout"
-    android:backgroundTint="@color/lightDark"
+
+    android:background="@color/lightDark"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/slide_background">
+        android:layout_height="300dp"
 
-        <!-- TODO: Note that, unlike the grid view list, one card in the vertical and horizontal
-               lists effectively take up the width of the screen. This means you have more
-               room to display information spanning the width of the card.-->
+        android:background="@drawable/slide_background"
+      >
+
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/med_item_background"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="250dp"
+            android:layout_height="300dp"
             android:scaleType="center"
             android:adjustViewBounds="true"
             app:shapeAppearanceOverlay="@style/Roundish_20"
             android:src="@drawable/slide_background"
             />
 
-        <RelativeLayout
+
+
+
+        <com.anychart.AnyChartView
+            android:id="@+id/any_chart_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            >
-
-            <TextView
-
-                android:id="@+id/disease_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
-                android:text="@string/disease"
-                android:textColor="@color/white"
-                android:textSize="36sp" />
-
-
-            <TextView
-
-                android:id="@+id/sys_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/disease_name"
-                android:layout_centerInParent="true"
-                android:text="@string/sys"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="21sp" />
-            <TextView
-
-                android:id="@+id/oia_name"
-                android:textColor="@color/white"
-                android:textSize="21sp"
-                android:text="@string/oia"
-                android:visibility="gone"
-                android:layout_below="@+id/sys_name"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"/>
-
-
-        </RelativeLayout>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -91,44 +91,59 @@ class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
     private fun insertDataToDatabase() {
        
         val readSys = binding.readingsSys.text.toString()
-        var readOIA = binding.readingsOia.text.toString()
+        var readOIA= binding.readingsOia.text.toString()
         lateinit  var reading:Reading
 
 
 
             // Check if the inputCheck function is true
             if (inputCheck(readSys))
+            {
                 if (!binding.readingsOia.isVisible ) {
                     // Create User Object
                     reading  = Reading(
                         0,
                         disease,
                         readSys,
-                        )
+                    )
                 }
-        else
+                else
                 {
-                    if (inputCheck(readOIA)) {
+                    if (inputCheck(readOIA.toString())) {
                         // Create User Object
-                         reading = Reading(
+                        reading = Reading(
                             0,
                             disease,
                             readSys,
-                            readOIA
+                            readOIA.toInt()
                         )
+
                     }
-                    Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_LONG)
-                        .show()
+                    else
+                    {
+                        Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_LONG)
+                            .show()
+                        return
+                    }
+
                 }
+            }
+        else
+            {
+                Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_LONG)
+                    .show()
+                return
+            }
 
 
+        // Add Data to database
+        readingViewModel.addReading(reading)
+        Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+        // Navigate back
+        binding.readingsSys.setText("")
+        binding.readingsOia.setText("")
 
-                // Add Data to database
-                readingViewModel.addReading(reading)
-                Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
-                // Navigate back
-                binding.readingsSys.setText("")
-                binding.readingsOia.setText("")
+
                 }
 
 

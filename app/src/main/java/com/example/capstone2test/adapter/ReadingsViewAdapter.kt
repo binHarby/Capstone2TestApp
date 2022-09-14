@@ -1,16 +1,28 @@
 package com.example.capstone2test.adapter
 
+import android.R
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.capstone2test.roomDatabase.data.Reading
+import com.anychart.AnyChart
+import com.anychart.chart.common.dataentry.DataEntry
+import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.anychart.chart.common.listener.Event
+import com.anychart.chart.common.listener.ListenersInterface
+import com.anychart.enums.Align
+import com.anychart.enums.LegendLayout
 import com.example.capstone2test.databinding.ItemReadingViewBinding
+import com.example.capstone2test.roomDatabase.data.Reading
+
 
 
 class ReadingsViewAdapter(private val context: Context, private val arrayList: List<Reading>) :
-    RecyclerView.Adapter<ReadingsViewAdapter.ReadingsViewHolder>() {
+    RecyclerView.Adapter<ReadingsViewAdapter.ReadingsViewHolder>()
+     {
+
 
     // Adapter:
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReadingsViewHolder {
@@ -27,27 +39,52 @@ class ReadingsViewAdapter(private val context: Context, private val arrayList: L
         // Prepare:
         holder.binding.apply {
             // Setting:
-            diseaseName.text = reading.diseaseName
-            sysName.text = reading.sysName
-
-            if(reading.aioName!=null)
-            {
-                oiaName.visibility= View.VISIBLE
-                oiaName.text = reading.aioName
-            }
-
-
-            layout.setOnClickListener {
+            anyChartView.setProgressBar(progressBar)
 
 
 
-            }
+            val pie = AnyChart.pie()
+
+            pie.setOnClickListener(object :
+                ListenersInterface.OnClickListener(arrayOf("x", "value")) {
+                override fun onClick(event: Event) {
+                 //   Toast.makeText(context, event.getData().get("x").toString() + ":" + event.data.get("value"), Toast.LENGTH_SHORT).show()
+                }
+            })
+
+            val data: MutableList<DataEntry> = ArrayList()
+            data.add(ValueDataEntry("SYS", reading.sysName.toInt()))
+            data.add(ValueDataEntry("AIO", reading.aioName))
+
+
+            pie.data(data)
+
+            pie.title("Disease pie chart")
+
+            pie.labels().position("outside")
+
+            pie.legend().title().enabled(true)
+            pie.legend().title()
+                .text("Reading SYS & AIO For Disease")
+                .padding(0.0, 0.0, 10.0, 0.0)
+
+            pie.legend()
+                .position("center-bottom")
+                .itemsLayout(LegendLayout.HORIZONTAL)
+                .align(Align.CENTER)
+
+            anyChartView.setChart(pie)
+
+            layout.setOnClickListener { }
 
         }
     }
+
 
     override fun getItemCount(): Int = arrayList.size
 
     // Holder:
     inner class ReadingsViewHolder(val binding: ItemReadingViewBinding) : RecyclerView.ViewHolder(binding.root)
+
+
 }

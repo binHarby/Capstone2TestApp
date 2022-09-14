@@ -93,6 +93,7 @@
     <string name="disease">Disease</string>
     <string name="sys">Sys</string>
     <string name="oia">OIA</string>
+    <string name="dash">-</string>
 
     <string-array name="foodList">
         <item>aroma</item>
