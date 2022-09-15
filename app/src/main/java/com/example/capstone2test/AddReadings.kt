@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +37,7 @@ class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
         // Inflate the layout for this fragment
         _binding = FragmentAddReadingsBinding.inflate(inflater, container, false)
         //code
+
 
         readingViewModel = ViewModelProvider(this)[ReadingViewModel::class.java]
 

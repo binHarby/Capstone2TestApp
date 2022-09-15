@@ -167,6 +167,9 @@
         <action
             android:id="@+id/action_homepage_to_addDiseases"
             app:destination="@id/addDiseases" />
+        <action
+            android:id="@+id/action_homepage_to_landingPage"
+            app:destination="@id/landingPage" />
     </fragment>
     <fragment
         android:id="@+id/settingsFrag"
