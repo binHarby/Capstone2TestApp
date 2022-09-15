@@ -33,7 +33,7 @@ class LandingPage : Fragment() {
         }
         return  binding.root
     }
-<<<<<<< Updated upstream
+
 
     override fun onStart() {
         super.onStart()
@@ -44,6 +44,5 @@ class LandingPage : Fragment() {
         }
     }
 
-=======
->>>>>>> Stashed changes
+
 }

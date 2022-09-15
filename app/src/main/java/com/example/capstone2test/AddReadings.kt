@@ -14,10 +14,9 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.capstone2test.databinding.FragmentAddReadingsBinding
 import com.example.capstone2test.roomDatabase.ReadingViewModel
 import com.example.capstone2test.roomDatabase.data.Reading
-import com.example.capstone2test.databinding.FragmentAddReadingsBinding
-import kotlin.random.Random
 
 
 class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
@@ -105,6 +104,7 @@ class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
                         0,
                         disease,
                         readSys,
+                        System.currentTimeMillis()
                     )
                 }
                 else
@@ -115,7 +115,7 @@ class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
                             0,
                             disease,
                             readSys,
-                            readOIA.toInt()
+                             System.currentTimeMillis(),readOIA.toInt()
                         )
 
                     }

@@ -133,22 +133,19 @@ class Homepage : Fragment() {
             action = HomepageDirections.homepageToAddMed()
             Navigation.findNavController(binding.root).navigate(action)
         }
-<<<<<<< Updated upstream
+
         binding.addReadingsNow.setOnClickListener {
             action= HomepageDirections.homepageToReadings()
             Navigation.findNavController(binding.root).navigate(action)
         }
 
-        binding.bottomNavView.setOnItemReselectedListener {item ->
-            when(item.itemId){
-=======
         binding.bottomNavView.setOnItemReselectedListener { item ->
             when (item.itemId) {
->>>>>>> Stashed changes
-                R.id.settings -> {
-                    action = HomepageDirections.actionGlobalSettingsFrag()
-                    Navigation.findNavController(binding.root).navigate(action)
-                }
+
+                    R.id.settings -> {
+                action = HomepageDirections.actionGlobalSettingsFrag()
+                Navigation.findNavController(binding.root).navigate(action)
+            }
                 R.id.more     -> {
                     action = HomepageDirections.actionGlobalMore()
                     Navigation.findNavController(binding.root).navigate(action)
@@ -253,7 +250,7 @@ class Homepage : Fragment() {
         setClicable(clicked)
         clicked = !clicked
     }
-<<<<<<< Updated upstream
+
     private fun setVisiblity(clicked:Boolean){
         if (!clicked){
             binding.addFoodNow.visibility=View.VISIBLE
@@ -261,57 +258,41 @@ class Homepage : Fragment() {
             binding.addReadingsNow.visibility=View.VISIBLE
         }else {
 
-            binding.addFoodNow.visibility=View.INVISIBLE
-            binding.addMedicationNow.visibility=View.INVISIBLE
-            binding.addReadingsNow.visibility=View.INVISIBLE
-=======
-
-    private fun setVisiblity(clicked: Boolean) {
-        if (!clicked) {
-            binding.addFoodNow.visibility = View.VISIBLE
-            binding.addMedicationNow.visibility = View.VISIBLE
-        } else {
             binding.addFoodNow.visibility = View.INVISIBLE
             binding.addMedicationNow.visibility = View.INVISIBLE
->>>>>>> Stashed changes
-        }
-    }
-
-    private fun setAnimation(clicked: Boolean) {
-        if (!clicked) {
-            binding.addFoodNow.startAnimation(fromBottom)
-            binding.addMedicationNow.startAnimation(fromBottom)
-            binding.addReadingsNow.startAnimation(fromBottom)
-            binding.bottomNavViewFAB.startAnimation(rotateOpen)
-        } else {
-            binding.addFoodNow.startAnimation(toBottom)
-            binding.addMedicationNow.startAnimation(toBottom)
-            binding.addReadingsNow.startAnimation(toBottom)
-            binding.bottomNavViewFAB.startAnimation(rotateClose)
+            binding.addReadingsNow.visibility = View.INVISIBLE
 
         }
     }
-<<<<<<< Updated upstream
-    private  fun setClicable(clicked: Boolean){
-        if (!clicked){
-            binding.addFoodNow.isClickable=true
-            binding.addMedicationNow.isClickable=true
-            binding.addReadingsNow.isClickable=true
-        }else {
 
-            binding.addFoodNow.isClickable=false
-            binding.addMedicationNow.isClickable=false
-            binding.addReadingsNow.isClickable=false
-=======
 
-    private fun setClicable(clicked: Boolean) {
-        if (!clicked) {
-            binding.addFoodNow.isClickable = true
-            binding.addMedicationNow.isClickable = true
-        } else {
-            binding.addFoodNow.isClickable = false
-            binding.addMedicationNow.isClickable = false
->>>>>>> Stashed changes
-        }
-    }
-}
+            private fun setAnimation(clicked: Boolean) {
+                if (!clicked) {
+                    binding.addFoodNow.startAnimation(fromBottom)
+                    binding.addMedicationNow.startAnimation(fromBottom)
+                    binding.addReadingsNow.startAnimation(fromBottom)
+                    binding.bottomNavViewFAB.startAnimation(rotateOpen)
+                } else {
+                    binding.addFoodNow.startAnimation(toBottom)
+                    binding.addMedicationNow.startAnimation(toBottom)
+                    binding.addReadingsNow.startAnimation(toBottom)
+                    binding.bottomNavViewFAB.startAnimation(rotateClose)
+
+                }
+            }
+
+            private  fun setClicable(clicked: Boolean) {
+                if (!clicked) {
+                    binding.addFoodNow.isClickable = true
+                    binding.addMedicationNow.isClickable = true
+                    binding.addReadingsNow.isClickable = true
+                } else {
+
+                    binding.addFoodNow.isClickable = false
+                    binding.addMedicationNow.isClickable = false
+                    binding.addReadingsNow.isClickable = false
+                }
+            }
+
+
+                }

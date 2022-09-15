@@ -82,6 +82,9 @@
         android:label="fragment_readings"
         tools:layout="@layout/fragment_reading" >
 
+        <action
+            android:id="@+id/action_readings_to_homepage"
+            app:destination="@id/homepage" />
     </fragment>
     <fragment
         android:id="@+id/signup2cont"
