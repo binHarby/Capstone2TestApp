@@ -14,6 +14,8 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -24,6 +26,8 @@ import com.example.capstone2test.const.Layout
 import com.example.capstone2test.controller.SessionManager
 import com.example.capstone2test.databinding.FragmentHomepageBinding
 import com.example.capstone2test.model.User
+import com.example.capstone2test.roomDatabase.ReadingViewModel
+import com.example.capstone2test.roomDatabase.data.Reading
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptionsExtension
 import com.google.android.gms.fitness.Fitness
@@ -31,6 +35,7 @@ import com.google.android.gms.fitness.FitnessOptions
 import com.google.android.gms.fitness.data.*
 import java.lang.Math.abs
 import java.text.DateFormat
+import java.util.concurrent.TimeUnit
 import kotlin.concurrent.fixedRateTimer
 
 class Homepage : Fragment() {
@@ -43,7 +48,7 @@ class Homepage : Fragment() {
     private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.to_bottom_anim) }
     private var clicked: Boolean = false
     private var slidhandle = Handler()
-
+    private lateinit var readingViewModel: ReadingViewModel
     //google fit stuff?
     private val dateFormat = DateFormat.getDateInstance()
     private lateinit var fitnessOptions: FitnessOptions
@@ -158,6 +163,43 @@ class Homepage : Fragment() {
         // Syncing:
         binding.syncGoogleFit.setOnClickListener { initializeGoogleFit() }
         // Returning:
+
+        readingViewModel = ViewModelProvider(this)[ReadingViewModel::class.java]
+        readingViewModel.readAllData.observe(viewLifecycleOwner, Observer { reading ->
+
+            var disease="blood pressure"
+            var result= arrayListOf<Reading>()
+            var resultInt= arrayListOf<Int>()
+            for (read in reading)
+            {
+
+                //get list of readings for the last 7 days
+                var time: Long = read.date
+                time += TimeUnit.MILLISECONDS.convert(168, TimeUnit.HOURS)
+                val timeNow = System.currentTimeMillis()
+                if (time > timeNow && read.diseaseName.trimEnd()==disease.trimEnd()) {
+                    result.add(read)
+                }
+            }
+            if (result.size>0)
+            {
+            /*    var median = if(result%2==0)
+                    result[result.size/2]
+                else (result[result.size/2] + result[(result.size/2) +1])/2*/
+
+
+                binding.homepageControlTitle.apply {
+                    // Setting:
+                    text = when {
+                        // Checking:
+
+                        else                -> "normal"
+                    }}
+            }
+
+        })
+
+
         return binding.root
     }
 

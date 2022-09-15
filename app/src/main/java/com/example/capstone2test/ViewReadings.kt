@@ -71,13 +71,6 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
 
 
 
-      /*  var time: Long
-        time = statusIn.getTimestamp()
-        time = time + TimeUnit.MILLISECONDS.convert(24, TimeUnit.HOURS)
-        val timeNow = System.currentTimeMillis()
-        if (time <= timeNow) {
-            dataSnapshot.getRef().removeValue()
-        } else storyList.add(statusIn)*/
 
         getData()
 
