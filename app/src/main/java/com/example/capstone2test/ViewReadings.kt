@@ -25,6 +25,7 @@ import com.anychart.chart.common.listener.ListenersInterface
 import com.anychart.charts.Cartesian
 import com.anychart.enums.Align
 import com.anychart.enums.LegendLayout
+import com.example.capstone2test.adapter.ReadingsViewAdapter
 import com.example.capstone2test.databinding.FragmentViewReadingsBinding
 import com.example.capstone2test.roomDatabase.ReadingViewModel
 import com.example.capstone2test.roomDatabase.data.Reading
@@ -37,6 +38,7 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
     var  readNewList = arrayListOf<Reading>()
     private lateinit var readingViewModel: ReadingViewModel
     private var disease :String ="blood pressure"
+    private lateinit var adapter :ReadingsViewAdapter
 
     var courses = arrayOf(
         "blood pressure", "Blood sugar"
@@ -69,7 +71,8 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
         binding.readingsSpinner.adapter = ad
         binding.readingsSpinner.onItemSelectedListener = this
 
-
+        adapter= ReadingsViewAdapter(requireContext(), arrayListOf() )
+        binding.rvReadings.adapter=adapter
 
 
         getData()
@@ -93,14 +96,26 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
             }
             if (readNewList.size>0)
             {
-                setChart()
-                binding.anyChartView.visibility=View.VISIBLE
-                binding.progressBar.visibility=View.VISIBLE
+                var  sys=0
+                var aio=0
+                for (read in readNewList)
+                {
+                    sys += read.sysName.toInt()
+                    aio += read.aioName
+                }
+                var result= arrayListOf<Reading>()
+
+                  result.add (Reading(0,disease,sys.toString(),0,aio))
+
+                adapter= ReadingsViewAdapter(requireContext(), result)
+                binding.rvReadings.adapter=adapter
+
+
             }
             else
             {
-                binding.anyChartView.visibility=View.GONE
-                binding.progressBar.visibility=View.GONE
+
+
             }
 
         })
@@ -110,7 +125,7 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
 
 
 
-        binding.anyChartView.setProgressBar(binding.progressBar)
+    /*    binding.anyChartView.setProgressBar(binding.progressBar)
 
         binding.anyChartView.clear()
 
@@ -158,7 +173,7 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
 
 
 
-        binding.layout.setOnClickListener { }
+        binding.layout.setOnClickListener { }*/
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
