@@ -1,5 +1,6 @@
 package com.example.capstone2test
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,6 +46,14 @@ class More : Fragment() {
                 }
             }
             true
+        }
+
+        binding.settingsSignoutTv.setOnClickListener {
+
+            SessionManager.getInstance(requireActivity().applicationContext).isUserLoggedIn = false
+            requireActivity().finish()
+           startActivity(Intent(requireContext(),MainActivity::class.java))
+
         }
         binding.settingsaddFoodNow.setOnClickListener {
             action = FoodJournalDirections.actionGlobalAddfood()
