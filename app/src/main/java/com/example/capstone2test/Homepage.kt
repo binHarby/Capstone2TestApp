@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.service.controls.Control
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -175,40 +176,104 @@ class Homepage : Fragment() {
         readingViewModel = ViewModelProvider(this)[ReadingViewModel::class.java]
         readingViewModel.readAllData.observe(viewLifecycleOwner, Observer { reading ->
 
-            var disease="blood pressure"
-            var result= arrayListOf<Reading>()
-            var resultInt= arrayListOf<Int>()
-            for (read in reading)
-            {
-
-                //get list of readings for the last 7 days
-                var time: Long = read.date
-                time += TimeUnit.MILLISECONDS.convert(168, TimeUnit.HOURS)
-                val timeNow = System.currentTimeMillis()
-                if (time > timeNow && read.diseaseName.trimEnd()==disease.trimEnd()) {
-                    result.add(read)
-                }
-            }
-            if (result.size>0)
-            {
-            /*    var median = if(result%2==0)
-                    result[result.size/2]
-                else (result[result.size/2] + result[(result.size/2) +1])/2*/
+            getControlLevel(reading ,"blood pressure" )
+            getControlLevel(reading ,"Blood sugar" )
 
 
-                binding.homepageControlTitle.apply {
-                    // Setting:
-                    text = when {
-                        // Checking:
 
-                        else                -> "normal"
-                    }}
-            }
 
         })
 
 
         return binding.root
+    }
+
+    private fun getControlLevel(reading: List<Reading>?, disease: String)
+    {
+
+        var result= arrayListOf<Reading>()
+
+        for (read in reading!!)
+        {
+
+            //get list of readings for the last 7 days
+            var time: Long = read.date.toLong()
+            time += TimeUnit.MILLISECONDS.convert(168, TimeUnit.HOURS)
+            val timeNow = System.currentTimeMillis()
+            if (time > timeNow && read.diseaseName.trimEnd()==disease.trimEnd()) {
+                result.add(read)
+            }
+        }
+        var sysList= arrayListOf<Int>()
+        var diaList=arrayListOf<Int>()
+        if (result.size>0)
+        {
+
+
+
+            for (read in result)
+            {
+                sysList.add(read.sysName.toInt())
+                if (disease=="blood pressure")
+                diaList.add(read.aioName)
+            }
+
+            var medianSys=0
+            var medianDia=0
+            var medianList= arrayListOf<Int>()
+            if(result.size%2==0){
+                medianSys=sysList[sysList.size/2]
+
+                medianList.add(medianSys)
+
+                if (disease=="blood pressure")
+                {
+                    medianDia=diaList[diaList.size/2]
+                    medianList.add(medianDia)
+                }
+
+            }
+            else {
+                medianSys=sysList[sysList.size/2] + sysList[(sysList.size/2)]
+                medianSys /= 2
+                medianList.add(medianSys)
+                if (disease=="blood pressure") {
+
+                    medianDia = diaList[diaList.size / 2] + diaList[(diaList.size / 2) + 1]
+                    medianDia /= 2
+                    medianList.add(medianDia)
+                }
+            }
+
+
+            binding.homepageControlValue.apply {
+                if (disease=="blood pressure") {
+
+                    // Setting:
+                    text = when {
+                        // Checking:
+                        (medianList[0]<120)&&(medianList[1]<80) ->"normal"
+                        (medianList[0] in 121..134)&&(medianList[1]>=80) ->"controlled"
+
+                        else                -> "uncontrolled"
+                    }
+
+                }
+
+            else
+            {
+                // Setting:
+                text = when {
+                    // Checking:
+                    medianList[0]<150 -> "normal"
+                    medianList[0] in 151..249 -> "controlled"
+                    else       -> "uncontrolled"
+                }
+            }
+            }
+
+
+        }
     }
 
     private fun initializeGoogleFit() {

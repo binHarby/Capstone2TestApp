@@ -106,7 +106,7 @@ class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
                         0,
                         disease,
                         readSys,
-                        System.currentTimeMillis()
+                        System.currentTimeMillis().toString()
                     )
                 }
                 else
@@ -117,7 +117,7 @@ class AddReadings : Fragment()  , AdapterView.OnItemSelectedListener {
                             0,
                             disease,
                             readSys,
-                             System.currentTimeMillis(),readOIA.toInt()
+                             System.currentTimeMillis().toString(),readOIA.toInt()
                         )
 
                     }

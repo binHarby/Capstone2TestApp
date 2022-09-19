@@ -2,33 +2,24 @@ package com.example.capstone2test
 
 import android.R
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.anychart.APIlib
-import com.anychart.AnyChart
-import com.anychart.AnyChartView
-import com.anychart.chart.common.dataentry.DataEntry
-import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.anychart.chart.common.listener.Event
-import com.anychart.chart.common.listener.ListenersInterface
-import com.anychart.charts.Cartesian
-import com.anychart.enums.Align
-import com.anychart.enums.LegendLayout
 import com.example.capstone2test.adapter.ReadingsViewAdapter
 import com.example.capstone2test.databinding.FragmentViewReadingsBinding
 import com.example.capstone2test.roomDatabase.ReadingViewModel
+import com.example.capstone2test.roomDatabase.data.OneReading
 import com.example.capstone2test.roomDatabase.data.Reading
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
@@ -71,7 +62,7 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
         binding.readingsSpinner.adapter = ad
         binding.readingsSpinner.onItemSelectedListener = this
 
-        adapter= ReadingsViewAdapter(requireContext(), arrayListOf() )
+        adapter= ReadingsViewAdapter(requireContext(), arrayListOf() ,arrayListOf())
         binding.rvReadings.adapter=adapter
 
 
@@ -87,7 +78,7 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
             readNewList.clear()
             for (read in reading)
             {
-                var time: Long = read.date
+                var time: Long = read.date.toLong()
                 time += TimeUnit.MILLISECONDS.convert(168, TimeUnit.HOURS)
                 val timeNow = System.currentTimeMillis()
                 if (time > timeNow && read.diseaseName.trimEnd()==disease.trimEnd()) {
@@ -96,18 +87,63 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
             }
             if (readNewList.size>0)
             {
+                var result= arrayListOf<Reading>()
+                var numberOfValues = arrayOf(0, 0,0,0,0,0,0)
+                var now = Calendar.getInstance();
+                now.add(Calendar.DATE,-6)
+
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+                 now = Calendar.getInstance();
+                now.add(Calendar.DATE, -5)
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+                now = Calendar.getInstance();
+                now.add(Calendar.DATE, -4)
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+                now = Calendar.getInstance();
+                now.add(Calendar.DATE, -3)
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+                now = Calendar.getInstance();
+                now.add(Calendar.DATE, -2)
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+                now = Calendar.getInstance();
+                now.add(Calendar.DATE, -1)
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+                now = Calendar.getInstance();
+                now.add(Calendar.DATE, 0)
+                result.add (Reading(0,disease,0.toString(),now.get(Calendar.DATE).toString() + "/"+ (now.get(Calendar.MONTH) + 1).toString(),0))
+
+                val sdf = SimpleDateFormat("dd/M")
                 var  sys=0
                 var aio=0
                 for (read in readNewList)
                 {
-                    sys += read.sysName.toInt()
-                    aio += read.aioName
+
+
+                            for ( i in 0 until result.size) {
+
+                                val resultDate = Date(read.date.toLong())
+                              //  Log.e("date ",result[i].date+"  "+sdf.format(resultDate) )
+                                if (result[i].date == sdf.format(resultDate))
+                                {
+                                    ++numberOfValues[i]
+                                   // Log.e("numberOfValues ","  " + numberOfValues[i])
+                                    result[i].sysName  = (result[i].sysName.toInt() + read.sysName.toInt()).toString()
+
+                                    if (read.aioName!=0)
+                                        result[i].aioName  = result[i].aioName + read.aioName
+
+
+                                }
+                            }
+
+
+
                 }
-                var result= arrayListOf<Reading>()
 
-                  result.add (Reading(0,disease,sys.toString(),0,aio))
+            var oneReading = arrayListOf<OneReading>()
 
-                adapter= ReadingsViewAdapter(requireContext(), result)
+                oneReading.add(OneReading(0,result))
+                adapter= ReadingsViewAdapter(requireContext(),oneReading, numberOfValues.toList())
                 binding.rvReadings.adapter=adapter
 
 
@@ -121,60 +157,6 @@ class ViewReadings : Fragment(), AdapterView.OnItemSelectedListener {
         })
     }
 
-    private fun setChart() {
-
-
-
-    /*    binding.anyChartView.setProgressBar(binding.progressBar)
-
-        binding.anyChartView.clear()
-
-       var bar= AnyChart.bar()
-
-
-
-        bar.setOnClickListener(object :
-            ListenersInterface.OnClickListener(arrayOf("x", "value")) {
-            override fun onClick(event: Event) {
-            }
-        })
-
-        val data: MutableList<DataEntry> = ArrayList()
-
-        var  sys=0
-        var aio=0
-        for (read in readNewList)
-        {
-            sys += read.sysName.toInt()
-            aio += read.aioName
-        }
-        data.add(ValueDataEntry("SYS", sys))
-        if (disease!=courses[1])
-           data.add(ValueDataEntry("AIO",aio))
-
-
-        bar.data(data)
-
-        bar.title("$disease pie chart")
-
-        bar.labels().position("outside")
-
-        bar.legend().title().enabled(true)
-        bar.legend().title()
-            .text("Reading SYS & AIO For Disease")
-            .padding(0.0, 0.0, 10.0, 0.0)
-
-        bar.legend()
-            .position("center-bottom")
-            .itemsLayout(LegendLayout.HORIZONTAL)
-            .align(Align.CENTER)
-
-        binding.anyChartView.setChart(bar)
-
-
-
-        binding.layout.setOnClickListener { }*/
-    }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         (p0!!.getChildAt(0) as TextView).setTextColor(Color.WHITE)
