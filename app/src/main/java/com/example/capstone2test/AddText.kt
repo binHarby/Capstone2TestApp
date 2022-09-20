@@ -26,6 +26,7 @@ import com.example.capstone2test.const.URLs
 import com.example.capstone2test.controller.SessionManager
 import com.example.capstone2test.controller.VolleySingleton
 import com.example.capstone2test.databinding.FragmentAddTextBinding
+import com.example.capstone2test.model.User
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -41,13 +42,15 @@ class AddText : Fragment() {
     private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(requireContext(),R.anim.to_bottom_anim) }
     private var clicked:Boolean =false
     private lateinit var token: String
+    private lateinit var user: User
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         _binding=FragmentAddTextBinding.inflate(inflater,container,false)
-        token =  SessionManager.getInstance(requireActivity().getApplicationContext()).getToken().getToken()
+        user =  SessionManager.getInstance(requireActivity().applicationContext).getUser()
+        token=user.token
         queue= VolleySingleton.getInstance(requireContext())
         binding.textbottomNavView.setOnItemReselectedListener {item ->
             when(item.itemId){
@@ -84,6 +87,8 @@ class AddText : Fragment() {
             val query = binding.textSearchView.text
             val jsonBody = JSONObject()
             jsonBody.put("name", query)
+            jsonBody.put("cals_diff",user.calState)
+            jsonBody.put("hash_map",user.hashMap)
             val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
                 Method.POST, URLs.URL_EXAPI_NAME, jsonBody,
                 Response.Listener { response ->
@@ -204,7 +209,11 @@ class AddText : Fragment() {
                         if (brief.length()>0){
                             var briefStr:String = ""
                             for (i in 0..brief.length()-1){
-                                briefStr += brief.getString(i).replace("_"," ").replaceFirstChar { it.uppercase() } + " "
+                                if (briefStr=="total_cals"){
+                                    briefStr="Excess of calories"
+                                }else{
+                                    briefStr += "Excess of "+brief.getString(i).replace("_"," ").replaceFirstChar { it.uppercase() } + " "
+                                }
                             }
 
                             binding.recommendationTv.text="Not Recommended"
@@ -213,7 +222,7 @@ class AddText : Fragment() {
                             binding.briefBtn.setOnCheckedChangeListener { _, checked ->
                                 if (checked){
                                     binding.textBriefCont.visibility=View.VISIBLE
-                                    binding.textBriefCont.text="Brief \nBecause Of The following food Elements:$briefStr"
+                                    binding.textBriefCont.text="Brief \nBecause Of The following Reasons :$briefStr"
                                 }else{
                                     binding.textBriefCont.visibility=View.INVISIBLE
                                     binding.textBriefCont.text=""
@@ -268,7 +277,7 @@ class AddText : Fragment() {
                     }
 
                 }
-                if (recom.has("report")){
+                if (recom.has("report") && (recom.getJSONArray("brief").length()>0)){
                    try {
                        val report = recom.getJSONArray("report")
                        if (report.length()>0) {
@@ -396,6 +405,7 @@ class AddText : Fragment() {
     }
     private fun sendToBackend(jsonObject:JSONObject, multiple: Double){
         var newObject=multipleJson(jsonObject,multiple)
+
         val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
             Method.POST, URLs.URL_FOOD, newObject,
             Response.Listener { response ->

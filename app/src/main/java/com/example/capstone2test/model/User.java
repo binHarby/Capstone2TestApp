@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class User {
     @SerializedName("first_name")
@@ -60,7 +61,8 @@ public class User {
     private Vitamins vitaminsGoal;
     @SerializedName("traces")
     private Traces tracesGoal;
-
+    private HashMap<String,String> hashMap;
+    private int calState;
 
 
     public User() {
@@ -71,7 +73,7 @@ public class User {
     }
 
     @SuppressLint("SimpleDateFormat")
-    public User(String firstName, String lastName, int id, int age, int tdee, int bmi, int calGoal, int calDiff, int weight, int activiyLvl, String controlLvl, String email, String password, String token, String birthday, String bloodtype, String gender, String created_at, String updated_at, double height, Macros macrosGoal, Minerals mineralsGoal, Vitamins vitaminsGoal, Traces tracesGoal) {
+    public User(String firstName, String lastName, int id, int age, int tdee, int bmi, int calGoal, int calDiff, int weight, int activiyLvl, String controlLvl, String email, String password, String token, String birthday, String bloodtype, String gender, String created_at, String updated_at, double height, Macros macrosGoal, Minerals mineralsGoal, Vitamins vitaminsGoal, Traces tracesGoal,HashMap<String,String> hashMap,int calState) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
@@ -102,6 +104,24 @@ public class User {
         this.mineralsGoal = mineralsGoal;
         this.vitaminsGoal = vitaminsGoal;
         this.tracesGoal = tracesGoal;
+        this.hashMap = hashMap;
+        this.calState=calState;
+    }
+
+    public HashMap<String, String> getHashMap() {
+        return hashMap;
+    }
+
+    public int getCalState() {
+        return calState;
+    }
+
+    public void setCalState(int calState) {
+        this.calState = calState;
+    }
+
+    public void setHashMap(HashMap<String, String> hashMap) {
+        this.hashMap = hashMap;
     }
 
     public int getId() {

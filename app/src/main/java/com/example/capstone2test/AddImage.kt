@@ -420,7 +420,7 @@ class AddImage : Fragment() {
                     }
 
                 }
-                if (recom.has("report")){
+                if (recom.has("report")&& (recom.getJSONArray("brief").length()>0) ){
                     try {
                         val report = recom.getJSONArray("report")
                         if (report.length()>0) {

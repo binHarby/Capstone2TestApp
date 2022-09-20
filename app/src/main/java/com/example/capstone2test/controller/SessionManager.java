@@ -13,6 +13,8 @@ import com.example.capstone2test.model.Vitamins;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+
 public class SessionManager {
     /* Fields from user class
    private int id;
@@ -50,6 +52,7 @@ public class SessionManager {
     private static final String KEY_CAL_DIFF="CALDIFF";
     private static final String KEY_WEIGHT="userBMI";
     private static final String KEY_ACTIVITY_LVL="ACTIVITYLVL";
+    private static final String KEY_CAL_STATE="CALSTATE";
     /* Double values or floats */
     private static final String KEY_HEIGHT="HEIGHT";
     /* String Values */
@@ -72,6 +75,7 @@ public class SessionManager {
     private static final String KEY_GOAL_MINERALS="MINERALS";
     private static final String KEY_GOAL_VITAMINS="VITAMINS";
     private static final String KEY_GOAL_TRACES="TRACES";
+    private static final String KEY_GOAL_HASHMAP="hashmap";
 
     /*utils */
     private final Gson gson = new Gson();
@@ -80,6 +84,7 @@ public class SessionManager {
     private Minerals minerals;
     private Vitamins vitamins;
     private Traces traces;
+    private HashMap<String,String> hashMap;
     private String tmp;
 
 
@@ -110,6 +115,7 @@ public class SessionManager {
         editor.putInt(KEY_CAL_DIFF,user.getCalDiff());
         editor.putInt(KEY_WEIGHT,user.getWeight());
         editor.putInt(KEY_ACTIVITY_LVL,user.getActiviyLvl());
+        editor.putInt(KEY_CAL_STATE,user.getCalState());
         /* Double values or floats */
         editor.putFloat(KEY_HEIGHT,(float) user.getHeight());
         /* Strings */
@@ -154,7 +160,13 @@ public class SessionManager {
             editor.putString(KEY_GOAL_TRACES,null);
         }
 
+        if(user.getHashMap() !=null){
+            String obj = gson.toJson(user.getHashMap());
+            editor.putString(KEY_GOAL_HASHMAP,obj);
 
+        }else {
+            editor.putString(KEY_GOAL_HASHMAP,null);
+        }
 
         editor.apply();
 
@@ -230,7 +242,13 @@ public class SessionManager {
         }else {
             traces=null;
         }
+        tmp = sharedPreferences.getString(KEY_GOAL_HASHMAP,null);
+        if (tmp !=null){
+            hashMap=gson.fromJson(tmp,HashMap.class);
 
+        }else {
+            hashMap=null;
+        }
         /*
         Reading(int id, int age, int tdee, int bmi, int calGoal
             , int calDiff, int weight, int activiyLvl, String controlLvl
@@ -251,7 +269,7 @@ public class SessionManager {
                 sharedPreferences.getString(KEY_BIRTHDAY,null),sharedPreferences.getString(KEY_BLOODTYPE,null),
                 sharedPreferences.getString(KEY_GENDER,null),sharedPreferences.getString(KEY_CREATED_AT,null),
                 sharedPreferences.getString(KEY_UPDATED_AT,null),(double) sharedPreferences.getFloat(KEY_HEIGHT,0),
-                macros,minerals,vitamins,traces
+                macros,minerals,vitamins,traces,hashMap, sharedPreferences.getInt(KEY_CAL_STATE,-1)
 
         );
     }

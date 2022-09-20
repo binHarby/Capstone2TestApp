@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
@@ -22,6 +23,7 @@ import com.example.capstone2test.const.URLs
 import com.example.capstone2test.controller.SessionManager
 import com.example.capstone2test.controller.VolleySingleton
 import com.example.capstone2test.databinding.FragmentAddBarcodeBinding
+import com.example.capstone2test.model.Capture
 import com.google.gson.Gson
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -51,18 +53,18 @@ class AddBarcode : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentAddBarcodeBinding.inflate(inflater,container,false)
-        token =  SessionManager.getInstance(requireActivity().getApplicationContext()).getToken().getToken();
+        token =  SessionManager.getInstance(requireContext()).getToken().getToken();
         queue= VolleySingleton.getInstance(requireContext())
         upc_code="0"
-        val barcodeLauncher = registerForActivityResult(
+        val barcodeLauncher: ActivityResultLauncher<ScanOptions> = registerForActivityResult(
             ScanContract()
         ) { result: ScanIntentResult ->
-            val context = context ?: binding.root.context
+            //val context = context ?: binding.root.context
             if (result.contents == null) {
-                Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(
-                    context,
+                    requireContext(),
                     "Scanned: " + result.contents,
                     Toast.LENGTH_LONG
                 ).show()
@@ -101,7 +103,9 @@ class AddBarcode : Fragment() {
             }
         }
         binding.barcodescan.setOnClickListener {
-            barcodeLauncher.launch(ScanOptions())
+            var capture =Capture()
+               barcodeLauncher.launch(ScanOptions().setOrientationLocked(false))
+
 
 
         }
@@ -179,7 +183,7 @@ class AddBarcode : Fragment() {
         }
     }
     private fun jsonToViews(jsonStr:String){
-        val context = context ?: binding.root.context
+        //val context = context ?: binding.root.context
         binding.barcodeFoodProperties.removeAllViews()
         //jsonObject
         val jsonObject=JSONObject(jsonStr)
@@ -269,7 +273,7 @@ class AddBarcode : Fragment() {
                     }
 
                 }
-                if (recom.has("report")){
+                if (recom.has("report") && (recom.getJSONArray("brief").length()>0)){
                     try {
                         val report = recom.getJSONArray("report")
                         if (report.length()>0) {
@@ -326,9 +330,9 @@ class AddBarcode : Fragment() {
                     while (key2.hasNext()){
                         val keyy2 = key2.next()
                         Log.d("$keyy2","${insideObject.get(keyy2)}")
-                        val newProp = TextView(context)
-                        val newValue = TextView(context)
-                        val newLO =  LinearLayout(context)
+                        val newProp = TextView(requireContext())
+                        val newValue = TextView(requireContext())
+                        val newLO =  LinearLayout(requireContext())
                         newLO.layoutParams= LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -349,10 +353,10 @@ class AddBarcode : Fragment() {
                         lp.weight= 1F
                         newValue.layoutParams=lp
 
-                        newProp.setTextColor(context.resources.getColor(R.color.white))
+                        newProp.setTextColor(requireContext().resources.getColor(R.color.white))
                         newProp.setTextSize(TypedValue.COMPLEX_UNIT_SP,25F)
                         newProp.textAlignment= LinearLayout.TEXT_ALIGNMENT_TEXT_START
-                        newValue.setTextColor(context.resources.getColor(R.color.pink))
+                        newValue.setTextColor(requireContext().resources.getColor(R.color.pink))
                         newValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,25F)
                         newValue.textAlignment= LinearLayout.TEXT_ALIGNMENT_TEXT_END
                         //push the to int the LL
@@ -436,7 +440,7 @@ class AddBarcode : Fragment() {
                 while (key2.hasNext()){
                     val keyy2 = key2.next()
                     if (!key.equals("general") && !key.equals("meta") ){
-                        jsonObject.getJSONObject(key).put(keyy2,(insideObject.get(keyy2)).toString().toInt()*multiple)
+                        jsonObject.getJSONObject(key).put(keyy2,(insideObject.get(keyy2)).toString().toDouble().toInt()*multiple)
                     }
 
                 }

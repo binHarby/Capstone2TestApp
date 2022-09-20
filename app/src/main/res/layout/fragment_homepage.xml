@@ -98,9 +98,9 @@
                         <TextView
                             android:id="@+id/homepageActValue"
                             android:layout_width="wrap_content"
-                            android:layout_alignStart="@+id/homepageActTitle"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/homepageActTitle"
+                            android:layout_alignStart="@+id/homepageActTitle"
                             android:text="@string/homepage_activity_value"
                             android:textColor="@color/pink"
                             android:textSize="14sp" />
@@ -116,6 +116,7 @@
                             android:layout_toEndOf="@+id/homepageActTitle"
                             android:text="@string/homepage_control_title"
                             android:textColor="@color/white" />
+
                         <TextView
                             android:id="@+id/homepageControlValue"
                             android:layout_width="wrap_content"
@@ -338,6 +339,7 @@
                            android:id="@+id/homepageDailyCalValue"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
+                           android:textSize="12sp"
                            android:layout_below="@+id/homepageDailyCalTitle"
                            android:layout_marginStart="15dp"
                            android:layout_marginTop="15dp"

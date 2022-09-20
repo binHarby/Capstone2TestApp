@@ -18,6 +18,7 @@ object URLs {
     val URL_ACTIVITY:String = ROOT_URL+"activity/"
     val URL_STATE:String = ROOT_URL+"state/"
     val URL_STATE_RESET:String = URL_STATE+"reset"
+    val URL_STATE_GET:String = URL_STATE+"get"
     // medication
     val URL_MED:String= ROOT_URL+"med/"
     val URL_MED_HISTORY:String = URL_MED+"record/"
