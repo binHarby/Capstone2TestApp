@@ -40,10 +40,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptionsExtension
 import com.google.android.gms.fitness.Fitness
 import com.google.android.gms.fitness.FitnessOptions
 import com.google.android.gms.fitness.data.*
+import com.google.android.gms.fitness.request.DataReadRequest
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Math.abs
 import java.text.DateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.fixedRateTimer
 
@@ -51,11 +55,11 @@ class Homepage : Fragment() {
     private var _binding: FragmentHomepageBinding? = null
     private val binding get() = _binding!!
     private lateinit var action: NavDirections
-    private lateinit var user :User
+    private lateinit var user: User
     private lateinit var androidViewModel: calStateViewModel
-    private var totalSteps: Int=0
-    private  var totalCals: Int=0
-    private var consumedCals:Int =0
+    private var totalSteps: Int = 0
+    private var totalCals: Int = 0
+    private var consumedCals: Int = 0
     private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.roatate_open_anim) }
     private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_close_anim) }
     private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.from_bottom_anim) }
@@ -63,6 +67,7 @@ class Homepage : Fragment() {
     private var clicked: Boolean = false
     private var slidhandle = Handler()
     private lateinit var readingViewModel: ReadingViewModel
+
     //google fit stuff?
     private val dateFormat = DateFormat.getDateInstance()
     private lateinit var fitnessOptions: FitnessOptions
@@ -75,12 +80,13 @@ class Homepage : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomepageBinding.inflate(inflater, container, false)
         //setting up user data
-        user= SessionManager.getInstance(requireActivity().applicationContext).getUser()
-        androidViewModel=ViewModelProvider(this).get(calStateViewModel::class.java)
+        user = SessionManager.getInstance(requireActivity().applicationContext).getUser()
+        androidViewModel = ViewModelProvider(this).get(calStateViewModel::class.java)
         androidViewModel.getUserState(user.token)
         androidViewModel.calState().observe(viewLifecycleOwner, Observer {
-            consumedCals=it
-            binding.homepageDailyCalValue.text = "(${user.calGoal} Calories Limit \n+ ${totalCals} Calories burned) \n- ${consumedCals} Consumed Calories \n= ${user.calGoal+totalCals-consumedCals}"
+            consumedCals = it
+            binding.homepageDailyCalValue.text =
+                "(${user.calGoal} Calories Limit \n+ ${totalCals} Calories burned) \n- ${consumedCals} Consumed Calories \n= ${user.calGoal + totalCals - consumedCals}"
 
 
         })
@@ -167,17 +173,17 @@ class Homepage : Fragment() {
         }
 
         binding.addReadingsNow.setOnClickListener {
-            action= HomepageDirections.homepageToReadings()
+            action = HomepageDirections.homepageToReadings()
             Navigation.findNavController(binding.root).navigate(action)
         }
 
         binding.bottomNavView.setOnItemReselectedListener { item ->
             when (item.itemId) {
 
-                    R.id.settings -> {
-                action = HomepageDirections.actionGlobalSettingsFrag()
-                Navigation.findNavController(binding.root).navigate(action)
-            }
+                R.id.settings -> {
+                    action = HomepageDirections.actionGlobalSettingsFrag()
+                    Navigation.findNavController(binding.root).navigate(action)
+                }
                 R.id.more     -> {
                     action = HomepageDirections.actionGlobalMore()
                     Navigation.findNavController(binding.root).navigate(action)
@@ -196,21 +202,18 @@ class Homepage : Fragment() {
             getControlLevel(reading)
 
 
-
         })
 
 
         return binding.root
     }
 
-    private fun getControlLevel(reading: List<Reading>?)
-    {
+    private fun getControlLevel(reading: List<Reading>?) {
 
-        var result= arrayListOf<Reading>()
-        var finalHashmap= HashMap<String,String>()
+        var result = arrayListOf<Reading>()
+        var finalHashmap = HashMap<String, String>()
 
-        for (read in reading!!)
-        {
+        for (read in reading!!) {
 
             //get list of readings for the last 7 days
             var time: Long = read.date.toLong()
@@ -220,65 +223,65 @@ class Homepage : Fragment() {
                 result.add(read)
             }
         }
-        var sysListDiabetes= arrayListOf<Int>()
-        var sysListBP= arrayListOf<Int>()
-        var diaListBP=arrayListOf<Int>()
-        if (result.size>0)
-        {
-            for (read in result)
-            {
-                if (read.diseaseName=="blood pressure"){
+        var sysListDiabetes = arrayListOf<Int>()
+        var sysListBP = arrayListOf<Int>()
+        var diaListBP = arrayListOf<Int>()
+        if (result.size > 0) {
+            for (read in result) {
+                if (read.diseaseName == "blood pressure") {
                     sysListBP.add(read.sysName.toInt())
                     diaListBP.add(read.aioName)
-                }else {
+                } else {
                     sysListDiabetes.add(read.sysName.toInt())
                 }
 
             }
 
 
-            var medianSysDiabetes=0
-            var medianSysBP=0
-            var medianDiaBP=0
-            if (sysListBP.size>0){
-                if (sysListBP.size%2==0){
-                    medianSysBP=(sysListBP[(sysListBP.size/2)-1]+sysListBP[sysListBP.size/2])/2
-                    medianDiaBP=(diaListBP[(diaListBP.size/2)-1]+diaListBP[diaListBP.size/2])/2
-                }else {
-                    medianSysBP=sysListBP[(sysListBP.size/2)]
-                    medianDiaBP=diaListBP[(diaListBP.size/2)]
+            var medianSysDiabetes = 0
+            var medianSysBP = 0
+            var medianDiaBP = 0
+            if (sysListBP.size > 0) {
+                if (sysListBP.size % 2 == 0) {
+                    medianSysBP = (sysListBP[(sysListBP.size / 2) - 1] + sysListBP[sysListBP.size / 2]) / 2
+                    medianDiaBP = (diaListBP[(diaListBP.size / 2) - 1] + diaListBP[diaListBP.size / 2]) / 2
+                } else {
+                    medianSysBP = sysListBP[(sysListBP.size / 2)]
+                    medianDiaBP = diaListBP[(diaListBP.size / 2)]
                 }
-                val controlLvl:String =bloodPreasureDecide(Pair(medianSysBP,medianDiaBP))
-                finalHashmap.put("blood_preasure",controlLvl)
+                val controlLvl: String = bloodPreasureDecide(Pair(medianSysBP, medianDiaBP))
+                finalHashmap.put("blood_preasure", controlLvl)
             }
-            if(sysListDiabetes.size>0){
-                if (sysListDiabetes.size%2==0){
-                    medianSysDiabetes=(sysListDiabetes[(sysListDiabetes.size/2)-1]+sysListDiabetes[sysListDiabetes.size/2])/2
-                }else {
-                    medianSysDiabetes=sysListDiabetes[(sysListDiabetes.size/2)]
+            if (sysListDiabetes.size > 0) {
+                if (sysListDiabetes.size % 2 == 0) {
+                    medianSysDiabetes =
+                        (sysListDiabetes[(sysListDiabetes.size / 2) - 1] + sysListDiabetes[sysListDiabetes.size / 2]) / 2
+                } else {
+                    medianSysDiabetes = sysListDiabetes[(sysListDiabetes.size / 2)]
                 }
-                val controlLvl:String = when(medianSysDiabetes){
-                    in 0..129 -> "normal"
+                val controlLvl: String = when (medianSysDiabetes) {
+                    in 0..129   -> "normal"
                     in 130..220 -> "high"
-                    else -> "uncontrolled"
+                    else        -> "uncontrolled"
                 }
-                finalHashmap.put("diabetes",controlLvl)
+                finalHashmap.put("diabetes", controlLvl)
 
             }
-            user.hashMap=finalHashmap
+            user.hashMap = finalHashmap
             SessionManager.getInstance(requireActivity().applicationContext).userLogin(user)
             binding.homepageControlValue.apply {
-                var levelList= mutableListOf<String>()
-                for((key,value) in finalHashmap){
+                var levelList = mutableListOf<String>()
+                for ((key, value) in finalHashmap) {
                     levelList.add(value)
 
                 }
-                val repeationOfElements=levelList.groupingBy { it }.eachCount() // This will return {"normal": 3, "uncontrolled":5,....}
+                val repeationOfElements =
+                    levelList.groupingBy { it }.eachCount() // This will return {"normal": 3, "uncontrolled":5,....}
 
 //
                 var profileLvl = repeationOfElements.maxBy { it.value }?.key //should be a string
-                if (profileLvl=="high"){
-                    profileLvl="controlled"
+                if (profileLvl == "high") {
+                    profileLvl = "controlled"
                 }
 
                 text = profileLvl
@@ -288,13 +291,14 @@ class Homepage : Fragment() {
 
         }
     }
-    private fun bloodPreasureDecide(medians: Pair<Int,Int>):String {
-        var (sys,dia)=medians
-        if(sys<120 && dia<80){
+
+    private fun bloodPreasureDecide(medians: Pair<Int, Int>): String {
+        var (sys, dia) = medians
+        if (sys < 120 && dia < 80) {
             return "normal"
-        }else if ((sys in 120..139) && (dia in 80..90)){
+        } else if ((sys in 120..139) && (dia in 80..90)) {
             return "high"
-        }else{
+        } else {
             return "uncontrolled"
         }
 
@@ -318,34 +322,58 @@ class Homepage : Fragment() {
             Thread {
                 // Repeating(3S):
                 fixedRateTimer("timer", false, 0L, 3000) {
-                    // Getting Step Counter:
-                    Fitness.getHistoryClient(requireActivity(), googleSignInAccount)
-                        .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA).addOnSuccessListener {
-                            // Initializing:
-                            if (it.dataPoints.size > 0)
-                                totalSteps = it.dataPoints.first().getValue(Field.FIELD_STEPS).asInt()
-                            // Logging:
+                    // STEPS:
+                    Fitness.getHistoryClient(
+                        requireActivity(),
+                        GoogleSignIn.getAccountForExtension(requireContext(), fitnessOptions)
+                    )
+                        .readData(generateRequestFor(DataType.TYPE_STEP_COUNT_DELTA))
+                        .addOnSuccessListener { response ->
+                            // INITIALIZING:
+                            val totalSteps = response.buckets
+                                .flatMap { it.dataSets }
+                                .flatMap { it.dataPoints }
+                                .sumOf { it.getValue(Field.FIELD_STEPS).asInt() }
+                            this@Homepage.totalSteps = totalSteps
+                            // SETTING:
                             binding.homepageGoogleFitSteps.text = "Total Steps Today: $totalSteps"
-                            Log.d("S...", "Size: ${it.dataPoints.size}")
-                            Log.d("S...", "Total: $totalSteps")
+                            // LOGGING:
+                            Log.d("S...", "-".repeat(64))
+                            Log.d("S...", "Steps: $totalSteps")
                         }
-                    // Getting Calories:
+                    // CALORIES:
                     Fitness.getHistoryClient(requireActivity(), googleSignInAccount)
                         .readDailyTotal(DataType.TYPE_CALORIES_EXPENDED).addOnSuccessListener {
                             // Initializing:
-                            if (it.dataPoints.size > 0)
-                                totalCals = it.dataPoints.first().getValue(Field.FIELD_CALORIES).asFloat().toInt()
+                            if (it.dataPoints.size > 0) totalCals = it.dataPoints.first().getValue(Field.FIELD_CALORIES).asFloat().toInt()
                             binding.homepageGoogleFitCals.text = "Total Calories Burned Today: $totalCals"
                             //confusing, I know but calSate here is the calories burned, I saved it globaly so I can send it on recommmendation
-                            user.calState=totalCals
+                            user.calState = totalCals
                             SessionManager.getInstance(requireActivity().applicationContext).userLogin(user)
                             //// Logging:
-                            Log.d("S...", "Size: ${it.dataPoints.size}")
-                            Log.d("S...", "Cal: $totalCals")
+                            Log.d("S...", "Calories: $totalCals")
                         }
                 }
-            }.run()
+            }.start()
         }
+    }
+
+    private fun generateRequestFor(type: DataType): DataReadRequest {
+        // INITIALIZING:
+        val startTime = LocalDate.now().atStartOfDay(ZoneId.systemDefault())
+        val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
+        val datasource = DataSource.Builder()
+            .setAppPackageName("com.google.android.gms")
+            .setDataType(type)
+            .setType(DataSource.TYPE_DERIVED)
+            .setStreamName("estimated_steps")
+            .build()
+        // RETURNING:
+        return DataReadRequest.Builder()
+            .aggregate(datasource)
+            .bucketByTime(7, TimeUnit.DAYS)
+            .setTimeRange(startTime.toEpochSecond(), endTime.toEpochSecond(), TimeUnit.SECONDS)
+            .build()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -376,15 +404,15 @@ binding.homepageActValue.text = when (user.activiyLvl) {
             // Setting:
             user.activiyLvl = when {
                 // Checking:
-                totalSteps < 1000  -> 0
+                totalSteps < 1000        -> 0
                 totalSteps in 1001..1999 -> 1
                 totalSteps in 2000..3000 -> 2
                 totalSteps in 3001..4000 -> 3
-                else  -> 4
+                else                     -> 4
             }
 
             SessionManager.getInstance(requireActivity().applicationContext).userLogin(user)
-            text = when(user.activiyLvl){
+            text = when (user.activiyLvl) {
                 0    -> "Low"
                 1    -> "Slight"
                 2    -> "Moderate"
@@ -417,12 +445,12 @@ binding.homepageActValue.text = when (user.activiyLvl) {
         clicked = !clicked
     }
 
-    private fun setVisiblity(clicked:Boolean){
-        if (!clicked){
-            binding.addFoodNow.visibility=View.VISIBLE
-            binding.addMedicationNow.visibility=View.VISIBLE
-            binding.addReadingsNow.visibility=View.VISIBLE
-        }else {
+    private fun setVisiblity(clicked: Boolean) {
+        if (!clicked) {
+            binding.addFoodNow.visibility = View.VISIBLE
+            binding.addMedicationNow.visibility = View.VISIBLE
+            binding.addReadingsNow.visibility = View.VISIBLE
+        } else {
 
             binding.addFoodNow.visibility = View.INVISIBLE
             binding.addMedicationNow.visibility = View.INVISIBLE
@@ -432,41 +460,42 @@ binding.homepageActValue.text = when (user.activiyLvl) {
     }
 
 
-            private fun setAnimation(clicked: Boolean) {
-                if (!clicked) {
-                    binding.addFoodNow.startAnimation(fromBottom)
-                    binding.addMedicationNow.startAnimation(fromBottom)
-                    binding.addReadingsNow.startAnimation(fromBottom)
-                    binding.bottomNavViewFAB.startAnimation(rotateOpen)
-                } else {
-                    binding.addFoodNow.startAnimation(toBottom)
-                    binding.addMedicationNow.startAnimation(toBottom)
-                    binding.addReadingsNow.startAnimation(toBottom)
-                    binding.bottomNavViewFAB.startAnimation(rotateClose)
+    private fun setAnimation(clicked: Boolean) {
+        if (!clicked) {
+            binding.addFoodNow.startAnimation(fromBottom)
+            binding.addMedicationNow.startAnimation(fromBottom)
+            binding.addReadingsNow.startAnimation(fromBottom)
+            binding.bottomNavViewFAB.startAnimation(rotateOpen)
+        } else {
+            binding.addFoodNow.startAnimation(toBottom)
+            binding.addMedicationNow.startAnimation(toBottom)
+            binding.addReadingsNow.startAnimation(toBottom)
+            binding.bottomNavViewFAB.startAnimation(rotateClose)
 
-                }
-            }
+        }
+    }
 
-            private  fun setClicable(clicked: Boolean) {
-                if (!clicked) {
-                    binding.addFoodNow.isClickable = true
-                    binding.addMedicationNow.isClickable = true
-                    binding.addReadingsNow.isClickable = true
-                } else {
+    private fun setClicable(clicked: Boolean) {
+        if (!clicked) {
+            binding.addFoodNow.isClickable = true
+            binding.addMedicationNow.isClickable = true
+            binding.addReadingsNow.isClickable = true
+        } else {
 
-                    binding.addFoodNow.isClickable = false
-                    binding.addMedicationNow.isClickable = false
-                    binding.addReadingsNow.isClickable = false
-                }
-            }
+            binding.addFoodNow.isClickable = false
+            binding.addMedicationNow.isClickable = false
+            binding.addReadingsNow.isClickable = false
+        }
+    }
+
     fun getUserState() {
 
         val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
             Method.GET, URLs.URL_STATE_GET, null //, jsonBody
             , Response.Listener { response ->
                 try {
-                    consumedCals=response.getJSONObject("general").getInt("total_cals")
-                    Log.d("Message",consumedCals.toString())
+                    consumedCals = response.getJSONObject("general").getInt("total_cals")
+                    Log.d("Message", consumedCals.toString())
                     //response is the answer
                     //Toast.makeText(MainActivity.this, newjson.toString(), Toast.LENGTH_SHORT).show();
                     //Log.d("response",newjson.toString());
@@ -495,4 +524,4 @@ binding.homepageActValue.text = when (user.activiyLvl) {
     }
 
 
-                }
+}
